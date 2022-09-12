@@ -13,29 +13,30 @@ for( let i = 0; i < 10; i++){
     cantidad = prompt("Ingrese la cantidad de piezas");
 } */
 
-const stockInicial = 5
-const movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1 Sumar a Stock \n 2 Vender \n 3 ESC");
-const item = prompt("Ingrese el producto: \n 1 Tornillo \n 2 Tuerca \n 3 Arandela");
+let stockInicial = 5
+let movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1 Sumar a Stock \n 2 Vender \n 3 ESC");
+let item = prompt("Ingrese el producto: \n 1 Tornillo \n 2 Tuerca \n 3 Arandela");
 
 const suma= (stockInicial, cantidad) => stockInicial + cantidad;
-const venta = (stockInicial, cantidad) => stockInicialk - cantidad;
+const venta = (stockInicial, cantidad) => stockInicial - cantidad;
+
 function producto(item){
     switch(item){
         case "1":
             return "Tornillos";
-            break;
         case "2":
             return "Tuercas";
-            break;
         case "3":
             return "Arandelas";
-            break;
         default:
             alert("Error");
             break;
     }
     item = prompt("Ingrese el producto: \n 1 Tornillo \n 2 Tuerca \n 3 Arandela");
 } 
+
+producto(item)
+
 while(movimiento != "3"){
     const cantidad = parseInt(prompt("Ingrese la cantidad"));
     switch(movimiento){
