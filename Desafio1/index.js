@@ -13,15 +13,15 @@ for( let i = 0; i < 10; i++){
     cantidad = prompt("Ingrese la cantidad de piezas");
 } */
 
-let stockInicial = 5
-let movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1 Sumar a Stock \n 2 Vender \n 3 ESC");
-let item = prompt("Ingrese el producto: \n 1 Tornillo \n 2 Tuerca \n 3 Arandela");
 
-const suma= (stockInicial, cantidad) => stockInicial + cantidad;
+let movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1 Sumar a Stock \n 2 Vender \n 3 ESC");
+let stockInicial = 5
+
+const suma = (stockInicial, cantidad) => stockInicial + cantidad;
 const venta = (stockInicial, cantidad) => stockInicial - cantidad;
 
-function producto(item){
-    switch(item){
+function producto(item) {
+    switch (item) {
         case "1":
             return "Tornillos";
         case "2":
@@ -32,22 +32,29 @@ function producto(item){
             alert("Error");
             break;
     }
-    item = prompt("Ingrese el producto: \n 1 Tornillo \n 2 Tuerca \n 3 Arandela");
-} 
+}
 
-producto(item)
-
-while(movimiento != "3"){
-    const cantidad = parseInt(prompt("Ingrese la cantidad"));
-    switch(movimiento){
-        case "1":
-            alert(`"Su stock actual es ${suma(stockInicial, cantidad)} ${producto(item)}"`);
-            break;
-        case "2":
-            alert(`"Su stock actual es ${venta(stockInicial, cantidad)} ${producto(item)}"`);
-            break;
-        default:
-            break;
+while (movimiento !== "3") {
+    if (movimiento !== "1" && movimiento !== "2") {
+        movimiento = prompt("Usted ingreso un valor no valido. \n Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
+    } else {
+        let item = prompt("Ingrese el producto: \n 1.Tornillo \n 2.Tuerca \n 3.Arandela");
+        let cantidad = parseInt(prompt("Ingrese la cantidad"));
+        switch (movimiento) {
+            case "1":
+                alert(`"Su stock actual es ${suma(stockInicial, cantidad)} ${producto(item)}"`);
+                break;
+            case "2":
+                alert(`"Su stock actual es ${venta(stockInicial, cantidad)} ${producto(item)}"`);
+                break;
+            case "ESC":
+                alert("el ciclo ha finalizado")
+                break
+        }
+        movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
     }
-    movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1 Sumar a Stock \n 2 Vender \n 3 ESC");
+}
+
+if (movimiento === "3") {
+    alert("el ciclo ha finalizado")
 }
