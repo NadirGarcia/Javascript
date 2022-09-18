@@ -1,4 +1,4 @@
-let inicio = prompt("Bienvenido, elije la operación a realizar \n 1. Agregar producto a la lista \n 2. Trabajar con producto ya cargado")
+let inicio = prompt("Bienvenido, elije la operación a realizar \n 1. Agregar producto a la lista \n 2. Trabajar con lista pedeterminada")
 let stockInicial = 5
 let lista = ["TORNILLOS", "TUERCAS", "ARANDELAS"];
 
@@ -9,11 +9,11 @@ const venta = (stockInicial, cantidad) => stockInicial - cantidad;
 function producto(item) {
     switch (item) {
         case "1":
-            return "TORNILLOS";
+            return lista[0];
         case "2":
-            return "TUERCAS";
+            return lista[1];
         case "3":
-            return "ARANDELAS";
+            return lista[2];
         default:
             alert("ERROR");
             break;
@@ -30,11 +30,12 @@ while (inicio === "1"){
     agregar = prompt("Ingrese un nuevo producto");
     lista.push(agregar.toUpperCase());
     alert(lista.join("\n"));
+    agregarMas = prompt("Desea agregar otro producto? \n SI \n NO");
     }else{
-    inicio = prompt("1. Agregar producto a la lista \n 2. Trabajar con productos ya cargados")
+    inicio = prompt("1. Agregar producto a la lista \n 2. Trabajar con lista pedeterminada")
     }
-
-    let movimiento = prompt("Usted ingreso un valor no valido. \n Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
+}
+    let movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
     while (movimiento !== "3") {
     if (movimiento !== "1" && movimiento !== "2") {
         movimiento = prompt("Usted ingreso un valor no valido. \n Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
@@ -61,4 +62,4 @@ while (inicio === "1"){
 if (movimiento === "3") {
     alert("el ciclo ha finalizado")
 }
-}
+
