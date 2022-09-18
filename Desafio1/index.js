@@ -1,4 +1,4 @@
-let inicio = prompt("Bienvenido, elije la operación a realizar \n 1. Agregar producto a la lista \n 2. Trabajar con lista pedeterminada")
+let inicio = prompt("Bienvenido, elije la operación a realizar \n 1. Sumar producto \n 2. Trabajar con lista predeterminada")
 let stockInicial = 5
 let lista = ["TORNILLOS", "TUERCAS", "ARANDELAS"];
 
@@ -21,20 +21,16 @@ function producto(item) {
 }
 
 while (inicio === "1"){
-    let agregar = prompt("Ingrese el producto");
-    lista.push(agregar.toUpperCase());
-    alert(lista.join("\n"));
-    let agregarMas = prompt("Desea agregar otro producto? \n SI \n NO");
-    
-    if((agregarMas === "SI") || (agregarMas === "si" ) || (agregarMas === "Si")){
-    agregar = prompt("Ingrese un nuevo producto");
-    lista.push(agregar.toUpperCase());
-    alert(lista.join("\n"));
-    agregarMas = prompt("Desea agregar otro producto? \n SI \n NO");
+    let agregar = prompt("Marque 1 para agregar un producto \n Marque 2 para salir");
+    if(agregar === "1"){
+        let agregarMas = prompt("Ingrese el nombre del producto")
+        lista.push(agregarMas.toUpperCase());
+        alert(lista.join("\n"));
     }else{
-    inicio = prompt("1. Agregar producto a la lista \n 2. Trabajar con lista pedeterminada")
+    inicio = prompt("1. Agregar producto a la lista \n 2. Trabajar con lista predeterminada")
     }
 }
+
     let movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
     while (movimiento !== "3") {
     if (movimiento !== "1" && movimiento !== "2") {
@@ -56,8 +52,6 @@ while (inicio === "1"){
         movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
     }
 }
-
-
 
 if (movimiento === "3") {
     alert("el ciclo ha finalizado")
