@@ -1,40 +1,41 @@
-/* let pieza = prompt("Ingrese el nombre de la pieza");
-let cantidad = prompt("Ingrese la cantidad de piezas");
-
-for( let i = 0; i < 10; i++){
-    if(cantidad == 0){
-        alert(`" NO tienes Stock de ${pieza}"`);
-    }else if(cantidad < 3){
-        alert(`"Tienes Stock bajo de ${pieza}"`);
-    }else{
-        alert(`"Tienes Stock suficiente de ${pieza}"`);
-    }
-    pieza = prompt("Ingrese otra pieza");
-    cantidad = prompt("Ingrese la cantidad de piezas");
-} */
-
-
-let movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1 Sumar a Stock \n 2 Vender \n 3 ESC");
+let inicio = prompt("Bienvenido, elije la operación a realizar \n 1. Agregar producto a la lista \n 2. Trabajar con producto ya cargado")
 let stockInicial = 5
+let lista = ["TORNILLOS", "TUERCAS", "ARANDELAS"];
 
 const suma = (stockInicial, cantidad) => stockInicial + cantidad;
 const venta = (stockInicial, cantidad) => stockInicial - cantidad;
 
+
 function producto(item) {
     switch (item) {
         case "1":
-            return "Tornillos";
+            return "TORNILLOS";
         case "2":
-            return "Tuercas";
+            return "TUERCAS";
         case "3":
-            return "Arandelas";
+            return "ARANDELAS";
         default:
-            alert("Error");
+            alert("ERROR");
             break;
     }
 }
 
-while (movimiento !== "3") {
+while (inicio === "1"){
+    let agregar = prompt("Ingrese el producto");
+    lista.push(agregar.toUpperCase());
+    alert(lista.join("\n"));
+    let agregarMas = prompt("Desea agregar otro producto? \n SI \n NO");
+    
+    if((agregarMas === "SI") || (agregarMas === "si" ) || (agregarMas === "Si")){
+    agregar = prompt("Ingrese un nuevo producto");
+    lista.push(agregar.toUpperCase());
+    alert(lista.join("\n"));
+    }else{
+    inicio = prompt("1. Agregar producto a la lista \n 2. Trabajar con productos ya cargados")
+    }
+
+    let movimiento = prompt("Usted ingreso un valor no valido. \n Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
+    while (movimiento !== "3") {
     if (movimiento !== "1" && movimiento !== "2") {
         movimiento = prompt("Usted ingreso un valor no valido. \n Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
     } else {
@@ -55,6 +56,9 @@ while (movimiento !== "3") {
     }
 }
 
+
+
 if (movimiento === "3") {
     alert("el ciclo ha finalizado")
+}
 }
