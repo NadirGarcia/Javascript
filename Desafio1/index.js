@@ -1,60 +1,98 @@
-/* let pieza = prompt("Ingrese el nombre de la pieza");
-let cantidad = prompt("Ingrese la cantidad de piezas");
+const productos = [];
+const carrito = [];
 
-for( let i = 0; i < 10; i++){
-    if(cantidad == 0){
-        alert(`" NO tienes Stock de ${pieza}"`);
-    }else if(cantidad < 3){
-        alert(`"Tienes Stock bajo de ${pieza}"`);
-    }else{
-        alert(`"Tienes Stock suficiente de ${pieza}"`);
+class Item{
+    constructora(producto){
+        this.nombre = producto.nombre;
+        this.precio = producto.precio;
+        this.categoria = producto.categoria;
+        this.stock = producto.stock;
     }
-    pieza = prompt("Ingrese otra pieza");
-    cantidad = prompt("Ingrese la cantidad de piezas");
-} */
+}
+
+const logitechG29 = {
+    nombre: "Logitech G29",
+    precio: 30000,
+    categoria: "Volantes",
+    stock: 4,
+}
+productos.push(logitechG29);
+
+const trusthmasterT300 = {
+    nombre: "Trusthmaster T300",
+    precio: 50000,
+    categoria: "Volantes",
+    stock: 5,
+}
+productos.push(trusthmasterT300);
+
+const fanatecCsl = {
+    nombre: "Fanatec Csl",
+    precio: 85000,
+    categoria: "Volantes",
+    stock: 2,
+}
+productos.push(fanatecCsl);
+
+const heusinkveldSps = {
+    nombre: "Heusinkveld SIM PEDALS SPRINT",
+    precio: 30000,
+    categoria: "Pedaleras",
+    stock: 4,
+}
+productos.push(heusinkveldSps);
 
 
-let movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1 Sumar a Stock \n 2 Vender \n 3 ESC");
-let stockInicial = 5
 
-const suma = (stockInicial, cantidad) => stockInicial + cantidad;
-const venta = (stockInicial, cantidad) => stockInicial - cantidad;
+
+//productos.forEach(item => console.log(item.nombre));
+
+/* let lg = productos.find(item => item === productos[1]);
+
+console.log(lg);
 
 function producto(item) {
     switch (item) {
         case "1":
-            return "Tornillos";
+            return productos[0];
         case "2":
-            return "Tuercas";
+            return productos[1];
         case "3":
-            return "Arandelas";
+            return productos[2];
         default:
             alert("Error");
             break;
     }
-}
+} */
 
-while (movimiento !== "3") {
-    if (movimiento !== "1" && movimiento !== "2") {
-        movimiento = prompt("Usted ingreso un valor no valido. \n Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
-    } else {
-        let item = prompt("Ingrese el producto: \n 1.Tornillo \n 2.Tuerca \n 3.Arandela");
-        let cantidad = parseInt(prompt("Ingrese la cantidad"));
-        switch (movimiento) {
-            case "1":
-                alert(`"Su stock actual es ${suma(stockInicial, cantidad)} ${producto(item)}"`);
-                break;
-            case "2":
-                alert(`"Su stock actual es ${venta(stockInicial, cantidad)} ${producto(item)}"`);
-                break;
-            case "ESC":
-                alert("el ciclo ha finalizado")
-                break
-        }
-        movimiento = prompt("Ingrese el tipo de movimiento a realizar: \n 1.Sumar a Stock \n 2.Vender \n 3.ESC")
+let bienvenida = prompt("Bienvenido a la tienda de NGsimracing \n 1. Volantes \n 2. Pedaleras \n 3. Salir" );
+
+while (bienvenida !== "3") {
+    if (bienvenida === "1") {
+        let volantes = productos.filter(item => item.categoria === "Volantes");
+        volantes.forEach(item =>{
+            let mensaje = `
+            Nombre: ${item.nombre} 
+            Precio: ${item.precio} 
+            Stock: ${item.stock}`;
+            
+            alert(mensaje);
+    })
+    } else if(bienvenida === "2"){
+        let pedaleras = productos.filter(item => item.categoria === "Pedaleras");
+        pedaleras.forEach(item =>{
+        let mensaje2 = `
+        Nombre: ${item.nombre} 
+        Precio: ${item.precio} 
+        Stock: ${item.stock}`;
+        
+        alert(mensaje2);
+    })
+    } else{
+        break;
     }
 }
 
-if (movimiento === "3") {
-    alert("el ciclo ha finalizado")
+if (bienvenida === "3") {
+    alert("Gracias por visitar nuestra tienda");
 }
