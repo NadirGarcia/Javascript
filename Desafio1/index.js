@@ -4,6 +4,7 @@ const carrito = [];
 
 class Item{
     constructora(producto){
+        this.imagen = producto.imagen;
         this.nombre = producto.nombre;
         this.precio = producto.precio;
         this.categoria = producto.categoria;
@@ -12,6 +13,7 @@ class Item{
 }
 
 const logitechG29 = {
+    imagen: "../resources/g29.png",
     nombre: "Logitech G29",
     precio: 30000,
     categoria: "Volantes",
@@ -20,6 +22,7 @@ const logitechG29 = {
 productos.push(logitechG29);
 
 const trusthmasterT300 = {
+    imagen: "../resources/t300.png",
     nombre: "Trusthmaster T300",
     precio: 50000,
     categoria: "Volantes",
@@ -28,6 +31,7 @@ const trusthmasterT300 = {
 productos.push(trusthmasterT300);
 
 const fanatecCsl = {
+    imagen: "../resources/fanatec.png",
     nombre: "Fanatec Csl",
     precio: 85000,
     categoria: "Volantes",
@@ -36,6 +40,7 @@ const fanatecCsl = {
 productos.push(fanatecCsl);
 
 const heusinkveldSps = {
+    imagen: "../resources/heusinkveldSrc.png",
     nombre: "Heusinkveld SIM PEDALS SPRINT",
     precio: 30000,
     categoria: "Pedaleras",
@@ -44,6 +49,22 @@ const heusinkveldSps = {
 productos.push(heusinkveldSps);
 
 
+
+const tienda = document.getElementById("tienda")
+tienda.className = "card";
+
+productos.forEach(producto => {
+    const div = document.createElement("div");
+    div.className = "card__styles"
+    div.innerHTML = `
+    <img class = "imagen" src = ${producto.imagen} alt = ""> 
+    <h3> ${producto.nombre}</h3>
+    <p> Precio: $ ${producto.precio}</p>
+    <p> Stock: ${producto.stock}</p>
+    <button class = "boton">Agregar</button>
+    `
+    tienda.appendChild(div)
+});
 
 function miCarrito(){
     carrito.forEach(item => {
@@ -55,7 +76,7 @@ function miCarrito(){
     })
 }
 
-function compra(comprar){
+/* function compra(comprar){
     switch(comprar){
         case "1":
             carrito.push(logitechG29);
@@ -74,9 +95,9 @@ function compra(comprar){
             break
     }
 }
+ */
 
-
-let bienvenida = prompt("Bienvenido a la tienda de NGsimracing \n 1. Volantes \n 2. Pedaleras \n 3. Salir" );
+/* let bienvenida = prompt("Bienvenido a la tienda de NGsimracing \n 1. Volantes \n 2. Pedaleras \n 3. Salir" );
 
 while (bienvenida !== "3"){
 if (bienvenida === "1") {
@@ -109,4 +130,4 @@ compra(comprar);
 bienvenida = prompt("Bienvenido a la tienda de NGsimracing \n 1. Volantes \n 2. Pedaleras \n 3. Salir" )
 }
 
-miCarrito();
+miCarrito(); */
