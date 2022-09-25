@@ -60,7 +60,7 @@ main{
     margin: 15px;
 }
 
-.card{
+.contenedor{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
@@ -73,12 +73,10 @@ main{
     grid-area: product;
 }
 
-.card__contein{
-    width: 50vw;
-    height: 60vh;
-}
 
-.card__styles{
+
+
+.card{
     width: 300px;
     height: 400px;
     display: flex;

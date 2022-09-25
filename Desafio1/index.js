@@ -51,11 +51,14 @@ productos.push(heusinkveldSps);
 
 
 const contenedorTienda = document.getElementById("contenedorTienda")
-contenedorTienda.className = "card";
+contenedorTienda.className = "contenedor";
+
 
 productos.forEach(producto => {
-    const imagen = document.createElement("div");
-    imagen.className = "card__styles"
+    const card = document.createElement("div");
+    card.className = "card"
+    const imagen = document.createElement("div")
+    imagen.className = "card__imagen"
     imagen.innerHTML = `
     <img class = "card__imagen" src = ${producto.imagen} alt = ""> 
     `
@@ -67,12 +70,10 @@ productos.forEach(producto => {
     <p> Stock: ${producto.stock}</p>
     <button class = "btn">Agregar</button>
     `
-    contenedorTienda.append(imagen)
-    imagen.append(info)
+    contenedorTienda.append(card)
+    card.append(imagen)
+    card.append(info)
 });
-
-const item = document.createElement("div")
-item.innerHTML = 
 
 
 function miCarrito(){
