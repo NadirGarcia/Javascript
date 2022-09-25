@@ -5,20 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda -NGsimracing</title>
+    <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css">
+
 </head>
 <body>
     <header class="nav">
-        <ul class="nav__lista">
-            <li>Categoria</li>
-            <li>Ofertas</li>
-            <li>Mi carrito</li>
-            <li>Contacto</li>
-        </ul>
+        <nav class="nav m-3">
+            <a class="nav-link active" aria-current="page" href="#">Categorias</a>
+            <a class="nav-link" href="#">Ofertas</a>
+            <a class="nav-link" href="#">Marcas</a>
+            <a class="nav-link disabled">Disabled</a>
+        </nav>
         <a class = "nav__carrito" href=""><img class = "nav__carrito--img" src="../resources/carrito.png" alt=""></a>
     </header>
-    <main id ="tienda">
-
+    <main id ="contenedorTienda">
     </main>
     <footer class="footer">
         <ul class ="footer__lista">
@@ -27,12 +30,17 @@
             <li>Mi carrito</li>
             <li>Contacto</li>
         </ul>
-        <ul class ="footer__info">
-            <li>Leon Pinelo 592</li>
-            <li>nugarcia@hotmail.com</li>
-            <li>351-56768686</li>
-            <li>Horarios 8:00 a 17:00hs</li>
-        </ul>
+        <div class="footer__info m-3">
+            <button class="btn mb-3" type="submit">Registrarse</button>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Contraseña</label>
+            </div>
+        </div>
         <div class ="footer__redes">
             <a href="https://facebook.com" target="_blank"><img class="footer__redes--img" src="../resources/facebook.png" alt="Logo Facebook"></a>
             <a href="https://instagram.com" target="_blank"><img class="footer__redes--img" src="../resources/instagram.png" alt="Logo Instegram"></a>
@@ -40,6 +48,8 @@
         </div>
     </footer>
     <!-- Bootstrap -->
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="./index.js"></script>
 </body>
 </html>

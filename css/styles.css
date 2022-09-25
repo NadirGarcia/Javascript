@@ -16,6 +16,7 @@ main{
 }
 
 .nav__lista{
+    display: inline;
     list-style: none;
 }
 
@@ -40,27 +41,30 @@ main{
 
 .footer__lista{
     list-style: none;
-    padding: 10px;
+    margin: 20px;
 }
 
 .footer__info{
-    list-style: none;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .footer__redes{
     display: flex;
-    align-items: center;
+    align-items: top;
+    margin: 20px;
 }
 
 .footer__redes--img{
-    width: 50px;
+    width: 40px;
+    margin: 15px;
 }
 
 .card{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
+    border: none;
     gap: 35px;
     grid-template-areas: "product" "product" "product";
 }
@@ -69,7 +73,14 @@ main{
     grid-area: product;
 }
 
+.card__contein{
+    width: 50vw;
+    height: 60vh;
+}
+
 .card__styles{
+    width: 300px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,12 +90,20 @@ main{
     background-color: rgb(224, 240, 243);
 }
 
-.boton{
-    background-image: linear-gradient(to top, lightblue, rgb(212, 236, 212));
-    border-radius: 20px;
-    margin-bottom: 10px;
-}
-
-.imagen{
+.card__imagen{
     width: 200px;
 }
+
+.btn{
+    background-image: linear-gradient(to bottom, blue, lightblue);
+    border-radius: 1.5rem;
+    border: none;
+    color: white;
+}
+
+.btn:hover{
+    transform: scale(1.05, 1.05);
+    transition: 1s;
+}
+
+
