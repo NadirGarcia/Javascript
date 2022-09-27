@@ -4,6 +4,7 @@ const carrito = [];
 
 class Item{
     constructora(producto){
+        this.id = producto.id;
         this.imagen = producto.imagen;
         this.nombre = producto.nombre;
         this.precio = producto.precio;
@@ -13,6 +14,7 @@ class Item{
 }
 
 const logitechG29 = {
+    id: 1,
     imagen: "../resources/g29.png",
     nombre: "Logitech G29",
     precio: 30000,
@@ -22,6 +24,7 @@ const logitechG29 = {
 productos.push(logitechG29);
 
 const trusthmasterT300 = {
+    id: 2,
     imagen: "../resources/t300.png",
     nombre: "Trusthmaster T300",
     precio: 50000,
@@ -31,6 +34,7 @@ const trusthmasterT300 = {
 productos.push(trusthmasterT300);
 
 const fanatecCsl = {
+    id: 3,
     imagen: "../resources/fanatec.png",
     nombre: "Fanatec Csl",
     precio: 85000,
@@ -40,8 +44,9 @@ const fanatecCsl = {
 productos.push(fanatecCsl);
 
 const heusinkveldSps = {
+    id: 4,
     imagen: "../resources/heusinkveldSrc.png",
-    nombre: "Heusinkveld SIM PEDALS SPRINT",
+    nombre: "Heusinkveld SPS",
     precio: 30000,
     categoria: "Pedaleras",
     stock: 4,
@@ -49,43 +54,36 @@ const heusinkveldSps = {
 productos.push(heusinkveldSps);
 
 
-
 const contenedorTienda = document.getElementById("contenedorTienda")
 contenedorTienda.className = "contenedor";
 
-
 productos.forEach(producto => {
-    const card = document.createElement("div");
+    const card = document.createElement("div")
     card.className = "card"
-    const imagen = document.createElement("div")
-    imagen.className = "card__imagen"
-    imagen.innerHTML = `
-    <img class = "card__imagen" src = ${producto.imagen} alt = ""> 
-    `
-    const info = document.createElement("div")
-    info.className = "card__info"
-    info.innerHTML = `
-    <h3> ${producto.nombre}</h3>
-    <p> Precio: $ ${producto.precio}</p>
-    <p> Stock: ${producto.stock}</p>
-    <button class = "btn">Agregar</button>
+    card.innerHTML =`
+        <img class = "card__imagen" src="${producto.imagen}" alt="">
+        <div class= "card__info">
+            <h3> ${producto.nombre}</h3>
+            <span> Precio: $ ${producto.precio}</span>
+            <p> Stock: ${producto.stock}</p>
+            <button class = "btn" >Agregar</button>
+        </div>
     `
     contenedorTienda.append(card)
-    card.append(imagen)
-    card.append(info)
 });
 
 
-function miCarrito(){
+
+/* function miCarrito(){
     carrito.forEach(item => {
         let mensaje = `
             ${item.nombre} 
             $ ${item.precio}
         `
-        alert(mensaje);
+        console.log(mensaje);
     })
 }
-
+ */
 /* function compra(comprar){
     switch(comprar){
         case "1":
