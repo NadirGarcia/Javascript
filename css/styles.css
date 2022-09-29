@@ -32,34 +32,6 @@ main{
     height: 40px;
 }
 
-.footer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: rgb(77, 224, 224);
-}
-
-.footer__lista{
-    list-style: none;
-    margin: 20px;
-}
-
-.footer__info{
-    display: flex;
-    flex-direction: column;
-}
-
-.footer__redes{
-    display: flex;
-    align-items: top;
-    margin: 20px;
-}
-
-.footer__redes--img{
-    width: 40px;
-    margin: 15px;
-}
-
 .contenedor{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -72,9 +44,6 @@ main{
 .product{
     grid-area: product;
 }
-
-
-
 
 .card{
     width: 310px;
@@ -112,3 +81,30 @@ main{
 }
 
 
+.footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgb(77, 224, 224);
+}
+
+.footer__lista{
+    list-style: none;
+    margin: 20px;
+}
+
+.footer__info{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__redes{
+    display: flex;
+    align-items: top;
+    margin: 20px;
+}
+
+.footer__redes--img{
+    width: 40px;
+    margin: 15px;
+}

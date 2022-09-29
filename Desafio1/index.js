@@ -1,5 +1,10 @@
 const productos = [];
 const carrito = [];
+const inputBuscar = document.getElementById("inputBuscar")
+const botonBuscar = document.getElementById("btnBuscar");
+const volantes = document.getElementById("volantes")
+const pedaleras = document.getElementById("pedaleras")
+
 
 
 class Item{
@@ -66,12 +71,39 @@ productos.forEach(producto => {
             <h3> ${producto.nombre}</h3>
             <span> Precio: $ ${producto.precio}</span>
             <p> Stock: ${producto.stock}</p>
-            <button class = "btn" >Agregar</button>
+            <button id = ${producto.id} class = "btn" >Agregar</button>
         </div>
     `
+    
     contenedorTienda.append(card)
+    const botonAgregar = document.getElementById(producto.id);
+    botonAgregar.addEventListener("click", () => console.log(producto))
 });
 
+
+const buscador = (item) => {
+    console.log(item);
+    let encontrado = productos.filter(producto => producto.categoria === "Volantes")
+    console.log(encontrado);
+    inputBuscar.value = "";
+}
+
+botonBuscar.addEventListener("click", () => buscador(inputBuscar.value));
+
+
+const botonVolantes = () => {
+    let volantesEncontrados = productos.filter(producto => producto.categoria === "Volantes")
+    console.log(volantesEncontrados);
+}
+
+volantes.addEventListener("click", botonVolantes)
+
+const botonPedaleras = () => {
+    let pedalerasEncontrados = productos.filter(producto => producto.categoria === "Pedaleras")
+    console.log(pedalerasEncontrados);
+}
+
+pedaleras.addEventListener("click", botonPedaleras)
 
 
 /* function miCarrito(){
