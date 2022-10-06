@@ -5,13 +5,14 @@
 }
 
 main{
-    margin: 35px;
+    background-color: rgb(221, 215, 215);
 }
 
 .nav{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     background-color: rgb(77, 224, 224);
 }
 
@@ -23,13 +24,6 @@ main{
 .nav__carrito{
     display: flex;
     align-self: center;
-}
-
-.nav__carrito--img{
-    display: flex;
-    align-items: center;
-    width: 40px;
-    height: 40px;
 }
 
 .contenedor{
@@ -66,6 +60,13 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+
+.card__carrito{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .btn{

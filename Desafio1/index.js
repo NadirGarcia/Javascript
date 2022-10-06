@@ -1,12 +1,17 @@
 const productos = [];
 const carrito = [];
-const inputBuscar = document.getElementById("inputBuscar")
+const carritoLS = JSON.parse(localStorage.getItem("enCarrito"));
+const inputBuscar = document.getElementById("inputBuscar");
 const botonBuscar = document.getElementById("btnBuscar");
-const volantes = document.getElementById("volantes")
-const pedaleras = document.getElementById("pedaleras")
+const volantes = document.getElementById("volantes");
+const pedaleras = document.getElementById("pedaleras");
+const vaciarCarrito = document.getElementById("vaciarCarrito");
+const btnCarrito = document.getElementById("btnCarrito");
+const contenedorCarrito = document.getElementById("contenedorCarrito");
+const contenedorTienda = document.getElementById("contenedorTienda");
+contenedorTienda.className = "contenedor";
 
-
-
+//CONSTRUCTOR PRODUCTOS
 class Item{
     constructora(producto){
         this.id = producto.id;
@@ -18,6 +23,7 @@ class Item{
     }
 }
 
+//PRODUCTOS
 const logitechG29 = {
     id: 1,
     imagen: "../resources/g29.png",
@@ -58,10 +64,53 @@ const heusinkveldSps = {
 }
 productos.push(heusinkveldSps);
 
+//CARRITO
+const agregarCarrito = (producto) => {
+    let productoEnCarrito = carrito.find(existe => existe.id === producto.id)
+    if(productoEnCarrito === undefined){
+        carrito.push({
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            cantidad: 1
+        })
+    }else{
+        productoEnCarrito.precio = productoEnCarrito.precio + producto.precio;
+        productoEnCarrito.cantidad = productoEnCarrito.cantidad + 1;
+    }
+    imprimirCarrito()
+    localStorage.setItem("enCarrito", JSON.stringify(carrito))
+}
 
-const contenedorTienda = document.getElementById("contenedorTienda")
-contenedorTienda.className = "contenedor";
+const imprimirCarrito = () => {
+    contenedorCarrito.innerHTML = "";
+    carrito.forEach( item => {
+        const itemCarrito = document.createElement("div")
+        itemCarrito.className = "card__carrito"
+        itemCarrito.innerHTML = `
+            <h5>${item.nombre}</h5>
+            <span> $ ${item.precio}</span>
+            <span>${item.cantidad}</span>
+        `
+        contenedorCarrito.append(itemCarrito)
+    });
+}
 
+if(carritoLS){
+    const carrito = carritoLS
+    carrito.forEach( item => {
+        const itemCarrito = document.createElement("div")
+        itemCarrito.className = "card__carrito"
+        itemCarrito.innerHTML = `
+            <h5>${item.nombre}</h5>
+            <span> $ ${item.precio}</span>
+            <span>${item.cantidad}</span>
+        `
+        contenedorCarrito.append(itemCarrito)
+    })
+}
+
+//CARDS
 productos.forEach(producto => {
     const card = document.createElement("div")
     card.className = "card"
@@ -74,13 +123,19 @@ productos.forEach(producto => {
             <button id = ${producto.id} class = "btn" >Agregar</button>
         </div>
     `
-    
     contenedorTienda.append(card)
     const botonAgregar = document.getElementById(producto.id);
-    botonAgregar.addEventListener("click", () => console.log(producto))
+    botonAgregar.addEventListener("click", () => agregarCarrito(producto))
 });
 
+// BOTON VACIAR CARRITO
+vaciarCarrito.addEventListener("click", () => {
+    carrito.length = 0;
+    imprimirCarrito()
+    localStorage.clear()
+})
 
+//BUSCADOR
 const buscador = (item) => {
     console.log(item);
     let encontrado = productos.filter(producto => producto.categoria === "Volantes")
@@ -89,7 +144,6 @@ const buscador = (item) => {
 }
 
 botonBuscar.addEventListener("click", () => buscador(inputBuscar.value));
-
 
 const botonVolantes = () => {
     let volantesEncontrados = productos.filter(producto => producto.categoria === "Volantes")
@@ -106,68 +160,4 @@ const botonPedaleras = () => {
 pedaleras.addEventListener("click", botonPedaleras)
 
 
-/* function miCarrito(){
-    carrito.forEach(item => {
-        let mensaje = `
-            ${item.nombre} 
-            $ ${item.precio}
-        `
-        console.log(mensaje);
-    })
-}
- */
-/* function compra(comprar){
-    switch(comprar){
-        case "1":
-            carrito.push(logitechG29);
-            break;
-        case "2":
-            carrito.push(trusthmasterT300);
-            break;
-        case "3":
-            carrito.push(fanatecCsl);
-            break;
-        case "4":
-            carrito.push(heusinkveldSps);
-            break;
-        default:
-            alert("Error")
-            break
-    }
-}
- */
 
-/* let bienvenida = prompt("Bienvenido a la tienda de NGsimracing \n 1. Volantes \n 2. Pedaleras \n 3. Salir" );
-
-while (bienvenida !== "3"){
-if (bienvenida === "1") {
-    let volantes = productos.filter(item => item.categoria === "Volantes");
-    volantes.forEach(item =>{
-        let mensaje = `
-        Nombre: ${item.nombre} 
-        Precio: ${item.precio} 
-        Stock: ${item.stock}`;
-        alert(mensaje);
-})
-let comprar = prompt("Seleccione el producto \n 1. Logitech G29 \n 2. Trusthmaster T300 \n 3. Fanatec Csl");
-compra(comprar);
-} else if(bienvenida === "2"){
-    let pedaleras = productos.filter(item => item.categoria === "Pedaleras");
-    pedaleras.forEach(item =>{
-    let mensaje = `
-    Nombre: ${item.nombre} 
-    Precio: ${item.precio} 
-    Stock: ${item.stock}`;
-    alert(mensaje);
-})
-comprar = prompt("Seleccione el producto \n 4. Heusinkveld SIM PEDALS SPRINT");
-compra(comprar);
-} else if(bienvenida === "3"){
-    alert("Gracias por visitar nuestra tienda");
-}else{
-    alert("Ustes a ingresado una opcion incorrecta")
-}
-bienvenida = prompt("Bienvenido a la tienda de NGsimracing \n 1. Volantes \n 2. Pedaleras \n 3. Salir" )
-}
-
-miCarrito(); */

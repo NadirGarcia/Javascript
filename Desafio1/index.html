@@ -23,9 +23,31 @@
             </div>
             <button id = "btnBuscar" class="btn m-3">Buscar</button>
         </nav>
-        <a class = "nav__carrito" href=""><img class = "nav__carrito--img" src="../resources/carrito.png" alt=""></a>
+        <!-- Button trigger modal -->
+        <button id = "btnCarrito" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Mi carrito</button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Mi Carrito</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id= "contenedorCarrito" class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <span>TOTAL</span>
+                        <div>
+                            <button class="btn btn-primary">Comprar</button>
+                            <button id = "vaciarCarrito" class="btn btn-primary">Vaciar Carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     <main id ="contenedorTienda">
+        
     </main>
     <footer class="footer">
         <ul class ="footer__lista">
@@ -51,8 +73,7 @@
             <a href="https://twitter.com" target="_blank"><img class="footer__redes--img" src="../resources/twitter.png" alt="Logo Instegram"></a>
         </div>
     </footer>
-    <!-- Bootstrap -->
-    <!-- JavaScript Bundle with Popper -->
+    <!-- Bootstrap JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="./index.js"></script>
 </body>
