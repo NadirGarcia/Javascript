@@ -130,9 +130,25 @@ productos.forEach(producto => {
 
 // BOTON VACIAR CARRITO
 vaciarCarrito.addEventListener("click", () => {
-    carrito.length = 0;
-    imprimirCarrito()
-    localStorage.clear()
+    Swal.fire({
+        title: 'Vaciar Carrito',
+        text: "Estas seguro que quieres vaciar el carrito?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, vaciar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            carrito.length = 0;
+            imprimirCarrito()
+            localStorage.clear()
+        Swal.fire(
+            'Tu carrito fue vaciado',
+        )
+        }
+    })
+
 })
 
 //BUSCADOR
