@@ -56,6 +56,12 @@ main{
     height: 300px;
 }
 
+.card__imagen--carrito{
+    width: 10vw;
+    height: 10vh;
+    margin: 10px;
+}
+
 .card__info{
     display: flex;
     flex-direction: column;
@@ -109,3 +115,4 @@ main{
     width: 40px;
     margin: 15px;
 }
+

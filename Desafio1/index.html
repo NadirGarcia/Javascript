@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda -NGsimracing</title>
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
     <header class="nav">
         <nav class="nav m-3">
-            <a id = "volantes" class="nav-link active" aria-current="page" href="#">Volantes</a>
-            <a id = "pedaleras" class="nav-link" href="#">Pedaleras</a>
-            <a class="nav-link" href="#">Marcas</a>
+            <div class="form-check">
+                <input id="volantes" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">Volantes</label>
+            </div>
+            <div class="form-check">
+                <input id="pedaleras" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">Pedaleras</label>
+            </div>
+            <button id="botonQuitarFiltro" class="btn">Quitar filtro</button>
             <div class="form-floating m-3">
                 <input type="text" class="form-control" id="inputBuscar" placeholder="text">
                 <label for="floatingInput">Buscar</label>
             </div>
-            <button id = "btnBuscar" class="btn m-3">Buscar</button>
+            <button id="btnBuscar" class="btn m-3">Buscar</button>
         </nav>
         <!-- Button trigger modal -->
-        <button id = "btnCarrito" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Mi carrito</button>
+        <button id="btnCarrito" type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Mi carrito</button>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Mi Carrito</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div id= "contenedorCarrito" class="modal-body">
+                    <div id="contenedorCarrito" class="modal-body">
                     </div>
                     <div class="modal-footer">
-                        <span>TOTAL</span>
+                        <span id="total"></span>
                         <div>
                             <button class="btn btn-primary">Comprar</button>
-                            <button id = "vaciarCarrito" class="btn btn-primary">Vaciar Carrito</button>
+                            <button id="vaciarCarrito" class="btn btn-primary">Vaciar Carrito</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-    <main id ="contenedorTienda">
-        
+    <main id="contenedorTienda" class = "contenedor">
+
     </main>
     <footer class="footer">
-        <ul class ="footer__lista">
+        <ul class="footer__lista">
             <li>Categoria</li>
             <li>Ofertas</li>
             <li>Mi carrito</li>
@@ -67,15 +80,21 @@
             </div>
             <button class="btn mt-3" type="submit">Registrarse</button>
         </div>
-        <div class ="footer__redes">
-            <a href="https://facebook.com" target="_blank"><img class="footer__redes--img" src="../resources/facebook.png" alt="Logo Facebook"></a>
-            <a href="https://instagram.com" target="_blank"><img class="footer__redes--img" src="../resources/instagram.png" alt="Logo Instegram"></a>
-            <a href="https://twitter.com" target="_blank"><img class="footer__redes--img" src="../resources/twitter.png" alt="Logo Instegram"></a>
+        <div class="footer__redes">
+            <a href="https://facebook.com" target="_blank"><img class="footer__redes--img"
+                    src="../resources/facebook.png" alt="Logo Facebook"></a>
+            <a href="https://instagram.com" target="_blank"><img class="footer__redes--img"
+                    src="../resources/instagram.png" alt="Logo Instegram"></a>
+            <a href="https://twitter.com" target="_blank"><img class="footer__redes--img" src="../resources/twitter.png"
+                    alt="Logo Instegram"></a>
         </div>
     </footer>
     <!-- Bootstrap JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./index.js"></script>
 </body>
+
 </html>
