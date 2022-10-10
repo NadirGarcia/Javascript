@@ -13,8 +13,8 @@ const contenedorTienda = document.getElementById("contenedorTienda");
 
 
 //CONSTRUCTOR PRODUCTOS
-class Item{
-    constructora(producto){
+class Item {
+    constructora(producto) {
         this.id = producto.id;
         this.imagen = producto.imagen;
         this.nombre = producto.nombre;
@@ -22,7 +22,7 @@ class Item{
         this.categoria = producto.categoria;
         this.stock = producto.stock;
     }
-}
+};
 
 //PRODUCTOS
 const logitechG29 = {
@@ -32,7 +32,7 @@ const logitechG29 = {
     precio: 30000,
     categoria: "Volantes",
     stock: 4,
-}
+};
 productos.push(logitechG29);
 
 const trusthmasterT300 = {
@@ -42,7 +42,7 @@ const trusthmasterT300 = {
     precio: 50000,
     categoria: "Volantes",
     stock: 5,
-}
+};
 productos.push(trusthmasterT300);
 
 const fanatecCsl = {
@@ -52,7 +52,7 @@ const fanatecCsl = {
     precio: 85000,
     categoria: "Volantes",
     stock: 2,
-}
+};
 productos.push(fanatecCsl);
 
 const heusinkveldSps = {
@@ -62,14 +62,14 @@ const heusinkveldSps = {
     precio: 30000,
     categoria: "Pedaleras",
     stock: 4,
-}
+};
 productos.push(heusinkveldSps);
 
 //CARDS
 productos.forEach(producto => {
-    const card = document.createElement("div")
-    card.className = "card"
-    card.innerHTML =`
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
         <img class = "card__imagen" src="${producto.imagen}" alt="">
         <div class= "card__info">
             <h3> ${producto.nombre}</h3>
@@ -77,48 +77,35 @@ productos.forEach(producto => {
             <p> Stock: ${producto.stock}</p>
             <button id = ${producto.id} class = "btn" >Agregar</button>
         </div>
-    `
-    contenedorTienda.append(card)
+    `;
+    contenedorTienda.append(card);
     const botonAgregar = document.getElementById(producto.id);
-    botonAgregar.addEventListener("click", () => agregarCarrito(producto))
+    botonAgregar.addEventListener("click", () => agregarCarrito(producto));
 });
-
 
 //CARRITO
 const agregarCarrito = (producto) => {
-    let productoEnCarrito = carrito.find(existe => existe.id === producto.id)
-    if(productoEnCarrito === undefined){
+    let productoEnCarrito = carrito.find(existe => existe.id === producto.id);
+    if (productoEnCarrito === undefined) {
         carrito.push({
-            id: producto.id,
-            imagen: producto.imagen,
-            nombre: producto.nombre,
+            ...producto,
             precioUnitario: producto.precio,
-            precio: producto.precio,
             cantidad: 1
-        })
-    }else{
+        });
+    } else {
         productoEnCarrito.precio = productoEnCarrito.precio + producto.precio;
         productoEnCarrito.cantidad = productoEnCarrito.cantidad + 1;
-    }
-    imprimirCarrito()
-    localStorage.setItem("enCarrito", JSON.stringify(carrito))
+    };
+    imprimirCarrito();
+    localStorage.setItem("enCarrito", JSON.stringify(carrito));
 };
 
-
-const totalCompra = () => {
-    const total = document.getElementById("total");
-    total.innerHTML = `
-        TOTAL: $ ${carrito.reduce((acumulador, elemento) => acumulador + elemento.precio, 0)}
-    `;
-};
-
-
-
+//RENDERIZACION DE PRODUCTO EN CARRITO
 const imprimirCarrito = () => {
     contenedorCarrito.innerHTML = "";
-    carrito.forEach( item => {
-        const itemCarrito = document.createElement("tr")
-        itemCarrito.className = "card__carrito"
+    carrito.forEach(item => {
+        const itemCarrito = document.createElement("tr");
+        itemCarrito.className = "card__carrito";
         itemCarrito.innerHTML = `
             <td><img class = "card__imagen--carrito" src="${item.imagen}" alt=""></td>
             <td><h5>${item.nombre}</h5></td>
@@ -134,18 +121,34 @@ const imprimirCarrito = () => {
     });
 }
 
+//TOTAL DE LA COMPRA
+const totalCompra = () => {
+    const total = document.getElementById("total");
+    total.innerHTML = `
+        TOTAL: $ ${carrito.reduce((acumulador, elemento) => acumulador + elemento.precio, 0)}
+    `;
+};
+
+//BOTON ELIMINAR ITEM DE CARRITO
 const eliminarItem = (item) => {
     let productoEliminar = carrito.find(existe => existe.id === item.id);
-    carrito.pop(productoEliminar);
-    localStorage.removeItem("enCarrito[productoEliminar]");
-    imprimirCarrito()
-    totalCompra();
-}
-
-
-if(carritoLS){
-    carrito = carritoLS;
+    let indice = carrito.indexOf(productoEliminar);
+    carrito.splice(indice, 1);
     imprimirCarrito();
+    totalCompra();
+    Toastify({
+        text: `Eliminaste ${productoEliminar.nombre} del carrito`,
+        duration: 4000,
+        position: "center",
+        gravity: "bottom",
+        style: {
+            background: "linear-gradient(to bottom, #00b09b, #96c93d)",
+        }
+    }).showToast();
+    //Eliminar Item de carrito en LocalStorage
+    let carritoLS = JSON.parse(localStorage.getItem("enCarrito"));
+    carritoLS = carrito.filter(existe => existe.id !== item.id);
+    localStorage.setItem("enCarrito", JSON.stringify(carritoLS));
 };
 
 // BOTON VACIAR CARRITO
@@ -161,16 +164,89 @@ vaciarCarrito.addEventListener("click", () => {
     }).then((result) => {
         if (result.isConfirmed) {
             carrito.length = 0;
-            imprimirCarrito()
-            totalCompra()
-            localStorage.clear()
-        Swal.fire(
-            'Tu carrito fue vaciado',
-        )
-        }
-    })
+            imprimirCarrito();
+            totalCompra();
+            localStorage.clear();
+            Swal.fire(
+                'Tu carrito fue vaciado',
+            )
+        };
+    });
+});
 
-})
+//RENDERIZACION DE CARRITO POR LOCALSTORAGE
+let renderizarLS = carritoLS ? true : false;
+renderizarLS ? carrito = carritoLS : false;
+imprimirCarrito();
+
+//FILTRAR POR VOLANTES
+const botonVolantes = () => {
+    let volantesEncontrados = productos.filter(producto => producto.categoria === "Volantes");
+    contenedorTienda.innerHTML = "";
+    volantesEncontrados.forEach(producto => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+        <img class = "card__imagen" src="${producto.imagen}" alt="">
+        <div class= "card__info">
+        <h3> ${producto.nombre}</h3>
+        <span> Precio: $ ${producto.precio}</span>
+        <p> Stock: ${producto.stock}</p>
+        <button id = ${producto.id} class = "btn" >Agregar</button>
+        </div>
+        `;
+        contenedorTienda.append(card);
+        const botonAgregar = document.getElementById(producto.id);
+        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
+    });
+
+}
+volantes.addEventListener("click", botonVolantes);
+
+//FILTRAR POR PEDALERAS
+const botonPedaleras = () => {
+    let pedalerasEncontrados = productos.filter(producto => producto.categoria === "Pedaleras");
+    contenedorTienda.innerHTML = "";
+    pedalerasEncontrados.forEach(producto => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+        <img class = "card__imagen" src="${producto.imagen}" alt="">
+        <div class= "card__info">
+        <h3> ${producto.nombre}</h3>
+        <span> Precio: $ ${producto.precio}</span>
+        <p> Stock: ${producto.stock}</p>
+        <button id = ${producto.id} class = "btn" >Agregar</button>
+        </div>
+        `;
+        contenedorTienda.append(card);
+        const botonAgregar = document.getElementById(producto.id);
+        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
+    });
+}
+pedaleras.addEventListener("click", botonPedaleras);
+
+//QUITAR FILTROS
+botonQuitarFiltro.addEventListener("click", () => {
+    contenedorTienda.innerHTML = "";
+    productos.forEach(producto => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <img class = "card__imagen" src="${producto.imagen}" alt="">
+            <div class= "card__info">
+                <h3> ${producto.nombre}</h3>
+                <span> Precio: $ ${producto.precio}</span>
+                <p> Stock: ${producto.stock}</p>
+                <button id = ${producto.id} class = "btn" >Agregar</button>
+            </div>
+        `;
+        contenedorTienda.append(card);
+        const botonAgregar = document.getElementById(producto.id);
+        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
+    });
+});
+
 
 
 //BUSCADOR
@@ -182,74 +258,3 @@ vaciarCarrito.addEventListener("click", () => {
 } 
 
 botonBuscar.addEventListener("click", () => buscador(inputBuscar.value)); */
-
-
-const botonVolantes = () => {
-    let volantesEncontrados = productos.filter(producto => producto.categoria === "Volantes")
-    contenedorTienda.innerHTML = "";
-    volantesEncontrados.forEach(producto => {
-        const card = document.createElement("div")
-        card.className = "card"
-        card.innerHTML =`
-        <img class = "card__imagen" src="${producto.imagen}" alt="">
-        <div class= "card__info">
-        <h3> ${producto.nombre}</h3>
-        <span> Precio: $ ${producto.precio}</span>
-        <p> Stock: ${producto.stock}</p>
-        <button id = ${producto.id} class = "btn" >Agregar</button>
-        </div>
-        `
-        contenedorTienda.append(card)
-        const botonAgregar = document.getElementById(producto.id);
-        botonAgregar.addEventListener("click", () => agregarCarrito(producto))
-    });
-    
-}
-
-volantes.addEventListener("click", botonVolantes)
-
-
-const botonPedaleras = () => {
-    let pedalerasEncontrados = productos.filter(producto => producto.categoria === "Pedaleras");
-    contenedorTienda.innerHTML = "";
-    pedalerasEncontrados.forEach(producto => {
-        const card = document.createElement("div")
-        card.className = "card"
-        card.innerHTML =`
-        <img class = "card__imagen" src="${producto.imagen}" alt="">
-        <div class= "card__info">
-        <h3> ${producto.nombre}</h3>
-        <span> Precio: $ ${producto.precio}</span>
-        <p> Stock: ${producto.stock}</p>
-        <button id = ${producto.id} class = "btn" >Agregar</button>
-        </div>
-        `
-        contenedorTienda.append(card)
-        const botonAgregar = document.getElementById(producto.id);
-        botonAgregar.addEventListener("click", () => agregarCarrito(producto))
-    });
-}
-
-pedaleras.addEventListener("click", botonPedaleras)
-
-
-botonQuitarFiltro.addEventListener("click", () => {
-    contenedorTienda.innerHTML = "";
-    productos.forEach(producto => {
-        const card = document.createElement("div")
-        card.className = "card"
-        card.innerHTML =`
-            <img class = "card__imagen" src="${producto.imagen}" alt="">
-            <div class= "card__info">
-                <h3> ${producto.nombre}</h3>
-                <span> Precio: $ ${producto.precio}</span>
-                <p> Stock: ${producto.stock}</p>
-                <button id = ${producto.id} class = "btn" >Agregar</button>
-            </div>
-        `
-        contenedorTienda.append(card)
-        const botonAgregar = document.getElementById(producto.id);
-        botonAgregar.addEventListener("click", () => agregarCarrito(producto))
-    });
-})
-
