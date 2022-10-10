@@ -20,11 +20,13 @@
     <header class="nav">
         <nav class="nav m-3">
             <div class="form-check">
-                <input id="volantes" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <input id="volantes" class="form-check-input" type="radio" name="flexRadioDefault"
+                    id="flexRadioDefault1">
                 <label class="form-check-label" for="flexRadioDefault1">Volantes</label>
             </div>
             <div class="form-check">
-                <input id="pedaleras" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <input id="pedaleras" class="form-check-input" type="radio" name="flexRadioDefault"
+                    id="flexRadioDefault1">
                 <label class="form-check-label" for="flexRadioDefault1">Pedaleras</label>
             </div>
             <button id="botonQuitarFiltro" class="btn">Quitar filtro</button>
@@ -40,13 +42,26 @@
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Mi Carrito</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div id="contenedorCarrito" class="modal-body">
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenedorCarrito">
+                            </tbody>
+                        </table>
                     </div>
                     <div class="modal-footer">
                         <span id="total"></span>
@@ -59,7 +74,7 @@
             </div>
         </div>
     </header>
-    <main id="contenedorTienda" class = "contenedor">
+    <main id="contenedorTienda" class="contenedor">
 
     </main>
     <footer class="footer">

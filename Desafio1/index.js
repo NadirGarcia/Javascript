@@ -12,8 +12,6 @@ const contenedorCarrito = document.getElementById("contenedorCarrito");
 const contenedorTienda = document.getElementById("contenedorTienda");
 
 
-
-
 //CONSTRUCTOR PRODUCTOS
 class Item{
     constructora(producto){
@@ -94,6 +92,7 @@ const agregarCarrito = (producto) => {
             id: producto.id,
             imagen: producto.imagen,
             nombre: producto.nombre,
+            precioUnitario: producto.precio,
             precio: producto.precio,
             cantidad: 1
         })
@@ -103,8 +102,8 @@ const agregarCarrito = (producto) => {
     }
     imprimirCarrito()
     localStorage.setItem("enCarrito", JSON.stringify(carrito))
-}
-;
+};
+
 
 const totalCompra = () => {
     const total = document.getElementById("total");
@@ -113,22 +112,36 @@ const totalCompra = () => {
     `;
 };
 
+
+
 const imprimirCarrito = () => {
     contenedorCarrito.innerHTML = "";
     carrito.forEach( item => {
-        const itemCarrito = document.createElement("div")
+        const itemCarrito = document.createElement("tr")
         itemCarrito.className = "card__carrito"
         itemCarrito.innerHTML = `
-            <img class = "card__imagen--carrito" src="${item.imagen}" alt="">
-            <h5>${item.nombre}</h5>
-            <span> $ ${item.precio}</span>
-            <span>${item.cantidad}</span>
-            <button id = ${item.id} class = "btn__eliminar"> x </button>
-        `
-        contenedorCarrito.append(itemCarrito)
-        totalCompra()
+            <td><img class = "card__imagen--carrito" src="${item.imagen}" alt=""></td>
+            <td><h5>${item.nombre}</h5></td>
+            <td><span> $ ${item.precioUnitario}</span></td>
+            <td><input class = "btn__cantidad" type = "number" value = ${item.cantidad}></input></td>
+            <td><span> $ ${item.precio}</span></td>
+            <td><button id = ${item.id} class = "btn__eliminar"> x </button></td>
+        `;
+        totalCompra();
+        contenedorCarrito.append(itemCarrito);
+        const botonEliminar = document.getElementById(item.id);
+        botonEliminar.addEventListener("click", () => eliminarItem(item));
     });
 }
+
+const eliminarItem = (item) => {
+    let productoEliminar = carrito.find(existe => existe.id === item.id);
+    carrito.pop(productoEliminar);
+    localStorage.removeItem("enCarrito[productoEliminar]");
+    imprimirCarrito()
+    totalCompra();
+}
+
 
 if(carritoLS){
     carrito = carritoLS;
