@@ -96,6 +96,35 @@ main{
     margin: 10px;
 }
 
+.carrito{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn__carrito{
+    position: absolute;
+    border: none;
+    background-color: rgb(77, 224, 224);
+}
+
+/* .carrito:hover{
+    transform: scale(1.1,1.1);
+    transition: 2s;
+}; */
+
+.btn__carrito--contador{
+    position: relative;
+    bottom: 20px;
+    left: 20px;
+    text-align: center;
+    color: white;
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    border-radius: 15px;
+}
+
 /* 
 .btn__cantidad--accion{
     display: flex;

@@ -39,10 +39,12 @@
             <button id="btnBuscar" class="btn m-3">Buscar</button>
         </nav>
         <!-- Button trigger modal -->
-        <button id="btnCarrito" type="button" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">Mi carrito</button>
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class = "carrito">
+            <button id="btnCarrito" type="button" class="btn__carrito btn-primary" data-bs-toggle="modal"
+            data-bs-target="#exampleModal"><img src="../resources/carrito.png" alt="Carrito"></button>
+            <span id="contador" class = "btn__carrito--contador">0</span>
+        </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content">

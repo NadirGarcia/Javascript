@@ -249,7 +249,7 @@ botonQuitarFiltro.addEventListener("click", () => {
 
 
 
-//BUSCADOR
+//BUSCADOR  
 /* const buscador = (item) => {
     console.log(item);
     let encontrado = productos.filter(producto => producto.categoria === "Volantes")
