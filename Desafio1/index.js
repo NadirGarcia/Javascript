@@ -1,4 +1,3 @@
-const productos = [];
 let carrito = [];
 let carritoLS = JSON.parse(localStorage.getItem("enCarrito"));
 const inputBuscar = document.getElementById("inputBuscar");
@@ -7,12 +6,41 @@ const botonQuitarFiltro = document.getElementById("botonQuitarFiltro");
 const volantes = document.getElementById("volantes");
 const pedaleras = document.getElementById("pedaleras");
 const vaciarCarrito = document.getElementById("vaciarCarrito");
-const btnCarrito = document.getElementById("btnCarrito");
+
 const contenedorCarrito = document.getElementById("contenedorCarrito");
 const contenedorTienda = document.getElementById("contenedorTienda");
 
 
-//CONSTRUCTOR PRODUCTOS
+const imprimirProductos = async () => {
+    try{
+        const productos = await fetch("./productos.json")
+            .then( res => res.json())
+            .then(data => {
+                data.forEach(producto => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+                    card.innerHTML = `
+                        <img class = "card__imagen" src="${producto.imagen}" alt="">
+                        <div class= "card__info">
+                            <h3> ${producto.nombre}</h3>
+                            <span> Precio: $ ${producto.precio}</span>
+                            <p> Stock: ${producto.stock}</p>
+                            <button id = ${producto.id} class = "btn" >Agregar</button>
+                        </div>
+                    `;
+                    contenedorTienda.append(card);
+                    const botonAgregar = document.getElementById(producto.id);
+                    botonAgregar.addEventListener("click", () => agregarCarrito(producto));
+                });
+            })
+    }catch{
+        console.log("Error");
+    }
+}
+
+imprimirProductos()
+
+/* //CONSTRUCTOR PRODUCTOS
 class Item {
     constructora(producto) {
         this.id = producto.id;
@@ -22,66 +50,8 @@ class Item {
         this.categoria = producto.categoria;
         this.stock = producto.stock;
     }
-};
+}; */
 
-//PRODUCTOS
-const logitechG29 = {
-    id: 1,
-    imagen: "../resources/g29.png",
-    nombre: "Logitech G29",
-    precio: 30000,
-    categoria: "Volantes",
-    stock: 4,
-};
-productos.push(logitechG29);
-
-const trusthmasterT300 = {
-    id: 2,
-    imagen: "../resources/t300.png",
-    nombre: "Trusthmaster T300",
-    precio: 50000,
-    categoria: "Volantes",
-    stock: 5,
-};
-productos.push(trusthmasterT300);
-
-const fanatecCsl = {
-    id: 3,
-    imagen: "../resources/fanatec.png",
-    nombre: "Fanatec Csl",
-    precio: 85000,
-    categoria: "Volantes",
-    stock: 2,
-};
-productos.push(fanatecCsl);
-
-const heusinkveldSps = {
-    id: 4,
-    imagen: "../resources/heusinkveldSrc.png",
-    nombre: "Heusinkveld SPS",
-    precio: 30000,
-    categoria: "Pedaleras",
-    stock: 4,
-};
-productos.push(heusinkveldSps);
-
-//CARDS
-productos.forEach(producto => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-        <img class = "card__imagen" src="${producto.imagen}" alt="">
-        <div class= "card__info">
-            <h3> ${producto.nombre}</h3>
-            <span> Precio: $ ${producto.precio}</span>
-            <p> Stock: ${producto.stock}</p>
-            <button id = ${producto.id} class = "btn" >Agregar</button>
-        </div>
-    `;
-    contenedorTienda.append(card);
-    const botonAgregar = document.getElementById(producto.id);
-    botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-});
 
 //CARRITO
 const agregarCarrito = (producto) => {
@@ -110,16 +80,30 @@ const imprimirCarrito = () => {
             <td><img class = "card__imagen--carrito" src="${item.imagen}" alt=""></td>
             <td><h5>${item.nombre}</h5></td>
             <td><span> $ ${item.precioUnitario}</span></td>
-            <td><input class = "btn__cantidad" type = "number" value = ${item.cantidad}></input></td>
+            <td><input id = "inputCantidad" class = "btn__cantidad" type = "number" value = ${item.cantidad}></td>
             <td><span> $ ${item.precio}</span></td>
-            <td><button id = ${item.id} class = "btn__eliminar"> x </button></td>
+            <td><button id = ${item.id} class = "btn__eliminar"> <img src ="../resources/trash.png"></button></td>
         `;
-        totalCompra();
         contenedorCarrito.append(itemCarrito);
+        totalCompra();
+        contadorCarrito();
         const botonEliminar = document.getElementById(item.id);
         botonEliminar.addEventListener("click", () => eliminarItem(item));
     });
 }
+
+//CONTADOR PRODUCTOS EN CARRITO
+const contadorCarrito = () => {
+    let contador = document.getElementById("contador");
+    if(carrito.length === 0){
+        contador.className = "btn__carrito--contadoroff"; 
+    }else{
+        contador.className = "btn__carrito--contador";
+        contador.innerHTML = `
+        <span>${carrito.length}</span>
+        `;
+    };
+};
 
 //TOTAL DE LA COMPRA
 const totalCompra = () => {
@@ -145,6 +129,7 @@ const eliminarItem = (item) => {
             background: "linear-gradient(to bottom, #00b09b, #96c93d)",
         }
     }).showToast();
+    contadorCarrito();
     //Eliminar Item de carrito en LocalStorage
     let carritoLS = JSON.parse(localStorage.getItem("enCarrito"));
     carritoLS = carrito.filter(existe => existe.id !== item.id);
@@ -166,6 +151,7 @@ vaciarCarrito.addEventListener("click", () => {
             carrito.length = 0;
             imprimirCarrito();
             totalCompra();
+            contadorCarrito();
             localStorage.clear();
             Swal.fire(
                 'Tu carrito fue vaciado',
@@ -246,6 +232,7 @@ botonQuitarFiltro.addEventListener("click", () => {
         botonAgregar.addEventListener("click", () => agregarCarrito(producto));
     });
 });
+
 
 
 

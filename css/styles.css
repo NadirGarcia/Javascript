@@ -114,6 +114,7 @@ main{
 }; */
 
 .btn__carrito--contador{
+    display: block;
     position: relative;
     bottom: 20px;
     left: 20px;
@@ -123,9 +124,12 @@ main{
     height: 25px;
     background-color: red;
     border-radius: 15px;
+} 
+
+.btn__carrito--contadoroff{
+    display: none;
 }
 
-/* 
 .btn__cantidad--accion{
     display: flex;
     justify-content: center;
@@ -139,7 +143,12 @@ main{
 .btn__cantidad--accion:hover{
     transform: scale(1.4, 1.4);
     background-color: rgb(240, 238, 238);
-} */
+} 
+
+.btn__eliminar{
+    border: none;
+    background-color: white;
+}
 
 /* .btn__cantidad--input{
     display: flex;
