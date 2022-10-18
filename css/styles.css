@@ -57,8 +57,8 @@ main{
 }
 
 .card__imagen--carrito{
-    width: 10vw;
-    height: 10vh;
+    width: 7vw;
+    height: auto;
     margin: 10px;
 }
 
@@ -94,6 +94,13 @@ main{
     border: 1px solid gray;
     border-radius: 5px;
     margin: 10px;
+}
+
+.btn__sumres{
+    display: block;
+    border: none;
+    color: rgb(0, 194, 58);
+    background-color: white;
 }
 
 .carrito{

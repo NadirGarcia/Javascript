@@ -6,14 +6,14 @@ const botonQuitarFiltro = document.getElementById("botonQuitarFiltro");
 const volantes = document.getElementById("volantes");
 const pedaleras = document.getElementById("pedaleras");
 const vaciarCarrito = document.getElementById("vaciarCarrito");
-
 const contenedorCarrito = document.getElementById("contenedorCarrito");
 const contenedorTienda = document.getElementById("contenedorTienda");
 
 
+
 const imprimirProductos = async () => {
     try{
-        const productos = await fetch("./productos.json")
+        const productos = await fetch("./dataBase/productos.json")
             .then( res => res.json())
             .then(data => {
                 data.forEach(producto => {
@@ -80,15 +80,20 @@ const imprimirCarrito = () => {
             <td><img class = "card__imagen--carrito" src="${item.imagen}" alt=""></td>
             <td><h5>${item.nombre}</h5></td>
             <td><span> $ ${item.precioUnitario}</span></td>
-            <td><input id = "inputCantidad" class = "btn__cantidad" type = "number" value = ${item.cantidad}></td>
+            <td><span class = "cantidad"> ${item.cantidad}</span> </td>
+            <button id ="sumar${item.id}" class = "btn__sumres">+</button>
+            <button id ="restar${item.id}" class = "btn__sumres">-</button>
             <td><span> $ ${item.precio}</span></td>
             <td><button id = ${item.id} class = "btn__eliminar"> <img src ="../resources/trash.png"></button></td>
-        `;
-        contenedorCarrito.append(itemCarrito);
-        totalCompra();
-        contadorCarrito();
-        const botonEliminar = document.getElementById(item.id);
-        botonEliminar.addEventListener("click", () => eliminarItem(item));
+            `;
+            contenedorCarrito.append(itemCarrito);
+            totalCompra();
+            contadorCarrito();
+            const botonEliminar = document.getElementById(item.id);
+            botonEliminar.addEventListener("click", () => eliminarItem(item));
+            const btnSumar = document.getElementById("sumar${item.id}")
+            const btnRestar = document.getElementById("restar${item.id}")
+
     });
 }
 
@@ -160,77 +165,74 @@ vaciarCarrito.addEventListener("click", () => {
     });
 });
 
-//RENDERIZACION DE CARRITO POR LOCALSTORAGE
+//RENDERIZACION DE CARRITO DESDE LOCALSTORAGE
 let renderizarLS = carritoLS ? true : false;
 renderizarLS ? carrito = carritoLS : false;
 imprimirCarrito();
 
 //FILTRAR POR VOLANTES
-const botonVolantes = () => {
-    let volantesEncontrados = productos.filter(producto => producto.categoria === "Volantes");
-    contenedorTienda.innerHTML = "";
-    volantesEncontrados.forEach(producto => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-        <img class = "card__imagen" src="${producto.imagen}" alt="">
-        <div class= "card__info">
-        <h3> ${producto.nombre}</h3>
-        <span> Precio: $ ${producto.precio}</span>
-        <p> Stock: ${producto.stock}</p>
-        <button id = ${producto.id} class = "btn" >Agregar</button>
-        </div>
-        `;
-        contenedorTienda.append(card);
-        const botonAgregar = document.getElementById(producto.id);
-        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-    });
+const botonVolantes = async () => {
+        const productos = await fetch("./dataBase/productos.json")
+            .then( res => res.json())
+            .then(data => {
+                data.forEach(producto => {
+                    let volantesEncontrados =data.filter(producto => producto.categoria === "Volantes");
+                    contenedorTienda.innerHTML = "";
+                    volantesEncontrados.forEach(producto => {
+                        const card = document.createElement("div");
+                        card.className = "card";
+                        card.innerHTML = `
+                        <img class = "card__imagen" src="${producto.imagen}" alt="">
+                        <div class= "card__info">
+                        <h3> ${producto.nombre}</h3>
+                        <span> Precio: $ ${producto.precio}</span>
+                        <p> Stock: ${producto.stock}</p>
+                        <button id = ${producto.id} class = "btn" >Agregar</button>
+                        </div>
+                        `;
+                        contenedorTienda.append(card);
+                        const botonAgregar = document.getElementById(producto.id);
+                        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
+                    });
+                })
+            })
+        }
+volantes.addEventListener("click", botonVolantes)
 
-}
-volantes.addEventListener("click", botonVolantes);
 
 //FILTRAR POR PEDALERAS
-const botonPedaleras = () => {
-    let pedalerasEncontrados = productos.filter(producto => producto.categoria === "Pedaleras");
-    contenedorTienda.innerHTML = "";
-    pedalerasEncontrados.forEach(producto => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-        <img class = "card__imagen" src="${producto.imagen}" alt="">
-        <div class= "card__info">
-        <h3> ${producto.nombre}</h3>
-        <span> Precio: $ ${producto.precio}</span>
-        <p> Stock: ${producto.stock}</p>
-        <button id = ${producto.id} class = "btn" >Agregar</button>
-        </div>
-        `;
-        contenedorTienda.append(card);
-        const botonAgregar = document.getElementById(producto.id);
-        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-    });
-}
+const botonPedaleras = async () => {
+    const productos = await fetch("./dataBase/productos.json")
+        .then( res => res.json())
+        .then(data => {
+            data.forEach(producto => {
+                let volantesEncontrados =data.filter(producto => producto.categoria === "Pedaleras");
+                contenedorTienda.innerHTML = "";
+                volantesEncontrados.forEach(producto => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+                    card.innerHTML = `
+                    <img class = "card__imagen" src="${producto.imagen}" alt="">
+                    <div class= "card__info">
+                    <h3> ${producto.nombre}</h3>
+                    <span> Precio: $ ${producto.precio}</span>
+                    <p> Stock: ${producto.stock}</p>
+                    <button id = ${producto.id} class = "btn" >Agregar</button>
+                    </div>
+                    `;
+                    contenedorTienda.append(card);
+                    const botonAgregar = document.getElementById(producto.id);
+                    botonAgregar.addEventListener("click", () => agregarCarrito(producto));
+                });
+            })
+        })
+    }
 pedaleras.addEventListener("click", botonPedaleras);
 
 //QUITAR FILTROS
 botonQuitarFiltro.addEventListener("click", () => {
     contenedorTienda.innerHTML = "";
-    productos.forEach(producto => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-            <img class = "card__imagen" src="${producto.imagen}" alt="">
-            <div class= "card__info">
-                <h3> ${producto.nombre}</h3>
-                <span> Precio: $ ${producto.precio}</span>
-                <p> Stock: ${producto.stock}</p>
-                <button id = ${producto.id} class = "btn" >Agregar</button>
-            </div>
-        `;
-        contenedorTienda.append(card);
-        const botonAgregar = document.getElementById(producto.id);
-        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-    });
+    imprimirProductos()
 });
 
 
