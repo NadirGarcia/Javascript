@@ -10,35 +10,38 @@ const contenedorCarrito = document.getElementById("contenedorCarrito");
 const contenedorTienda = document.getElementById("contenedorTienda");
 
 
-
 const imprimirProductos = async () => {
-    try{
-        const productos = await fetch("./dataBase/productos.json")
-            .then( res => res.json())
-            .then(data => {
-                data.forEach(producto => {
-                    const card = document.createElement("div");
-                    card.className = "card";
-                    card.innerHTML = `
-                        <img class = "card__imagen" src="${producto.imagen}" alt="">
-                        <div class= "card__info">
-                            <h3> ${producto.nombre}</h3>
-                            <span> Precio: $ ${producto.precio}</span>
-                            <p> Stock: ${producto.stock}</p>
-                            <button id = ${producto.id} class = "btn" >Agregar</button>
-                        </div>
-                    `;
-                    contenedorTienda.append(card);
-                    const botonAgregar = document.getElementById(producto.id);
-                    botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-                });
-            })
-    }catch{
+    try {
+        let response = await fetch("./dataBase/productos.json");
+        let data = await response.json();
+        return data;
+    } catch {
         console.log("Error");
     }
 }
+let productos = await imprimirProductos();
 
-imprimirProductos()
+//RENDERIZACION DE PRODUCTOS
+let renderizarProductos = () => {
+    productos.forEach((producto) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+                    <img class = "card__imagen" src="${producto.imagen}" alt="">
+                    <div class= "card__info">
+                        <h3> ${producto.nombre}</h3>
+                        <span> Precio: $ ${producto.precio}</span>
+                        <p> Stock: ${producto.stock}</p>
+                        <button id = ${producto.id} class = "btn" >Agregar</button>
+                    </div>
+                `;
+        contenedorTienda.append(card);
+        const botonAgregar = document.getElementById(producto.id);
+        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
+});
+};
+
+renderizarProductos()
 
 /* //CONSTRUCTOR PRODUCTOS
 class Item {
@@ -70,6 +73,13 @@ const agregarCarrito = (producto) => {
     localStorage.setItem("enCarrito", JSON.stringify(carrito));
 };
 
+/* const sumarCantidadCarrito = () => {
+    let modificarProducto = carrito.find(existe => existe.id === producto.id);
+    if(modificarProducto !== null){
+
+    }
+}; */
+
 //RENDERIZACION DE PRODUCTO EN CARRITO
 const imprimirCarrito = () => {
     contenedorCarrito.innerHTML = "";
@@ -86,23 +96,24 @@ const imprimirCarrito = () => {
             <td><span> $ ${item.precio}</span></td>
             <td><button id = ${item.id} class = "btn__eliminar"> <img src ="../resources/trash.png"></button></td>
             `;
-            contenedorCarrito.append(itemCarrito);
-            totalCompra();
-            contadorCarrito();
-            const botonEliminar = document.getElementById(item.id);
-            botonEliminar.addEventListener("click", () => eliminarItem(item));
-            const btnSumar = document.getElementById("sumar${item.id}")
-            const btnRestar = document.getElementById("restar${item.id}")
-
+        contenedorCarrito.append(itemCarrito);
+        totalCompra();
+        contadorCarrito();
+        const botonEliminar = document.getElementById(item.id);
+        botonEliminar.addEventListener("click", () => eliminarItem(item));
+        const btnSumar = document.getElementById(`sumar${item.id}`)
+        btnSumar.addEventListener("click", () => sumarCantidadCarrito);
+        const btnRestar = document.getElementById(`restar${item.id}`)
+        btnRestar.addEventListener("click", () => restarCantidadCarrito);
     });
-}
+};
 
 //CONTADOR PRODUCTOS EN CARRITO
 const contadorCarrito = () => {
     let contador = document.getElementById("contador");
-    if(carrito.length === 0){
-        contador.className = "btn__carrito--contadoroff"; 
-    }else{
+    if (carrito.length === 0) {
+        contador.className = "btn__carrito--contadoroff";
+    } else {
         contador.className = "btn__carrito--contador";
         contador.innerHTML = `
         <span>${carrito.length}</span>
@@ -171,68 +182,55 @@ renderizarLS ? carrito = carritoLS : false;
 imprimirCarrito();
 
 //FILTRAR POR VOLANTES
-const botonVolantes = async () => {
-        const productos = await fetch("./dataBase/productos.json")
-            .then( res => res.json())
-            .then(data => {
-                data.forEach(producto => {
-                    let volantesEncontrados =data.filter(producto => producto.categoria === "Volantes");
-                    contenedorTienda.innerHTML = "";
-                    volantesEncontrados.forEach(producto => {
-                        const card = document.createElement("div");
-                        card.className = "card";
-                        card.innerHTML = `
-                        <img class = "card__imagen" src="${producto.imagen}" alt="">
-                        <div class= "card__info">
-                        <h3> ${producto.nombre}</h3>
-                        <span> Precio: $ ${producto.precio}</span>
-                        <p> Stock: ${producto.stock}</p>
-                        <button id = ${producto.id} class = "btn" >Agregar</button>
-                        </div>
-                        `;
-                        contenedorTienda.append(card);
-                        const botonAgregar = document.getElementById(producto.id);
-                        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-                    });
-                })
-            })
-        }
-volantes.addEventListener("click", botonVolantes)
-
+volantes.addEventListener("click", () => {
+    let volantesEncontrados = productos.filter(producto => producto.categoria === "Volantes");
+    contenedorTienda.innerHTML = "";
+    volantesEncontrados.forEach(producto => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+        <img class = "card__imagen" src="${producto.imagen}" alt="">
+        <div class= "card__info">
+        <h3> ${producto.nombre}</h3>
+        <span> Precio: $ ${producto.precio}</span>
+        <p> Stock: ${producto.stock}</p>
+        <button id = ${producto.id} class = "btn" >Agregar</button>
+        </div>
+        `;
+        contenedorTienda.append(card);
+        const botonAgregar = document.getElementById(producto.id);
+        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
+    });
+});
 
 //FILTRAR POR PEDALERAS
-const botonPedaleras = async () => {
-    const productos = await fetch("./dataBase/productos.json")
-        .then( res => res.json())
-        .then(data => {
-            data.forEach(producto => {
-                let volantesEncontrados =data.filter(producto => producto.categoria === "Pedaleras");
-                contenedorTienda.innerHTML = "";
-                volantesEncontrados.forEach(producto => {
-                    const card = document.createElement("div");
-                    card.className = "card";
-                    card.innerHTML = `
-                    <img class = "card__imagen" src="${producto.imagen}" alt="">
-                    <div class= "card__info">
-                    <h3> ${producto.nombre}</h3>
-                    <span> Precio: $ ${producto.precio}</span>
-                    <p> Stock: ${producto.stock}</p>
-                    <button id = ${producto.id} class = "btn" >Agregar</button>
-                    </div>
-                    `;
-                    contenedorTienda.append(card);
-                    const botonAgregar = document.getElementById(producto.id);
-                    botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-                });
-            })
-        })
-    }
-pedaleras.addEventListener("click", botonPedaleras);
+pedaleras.addEventListener("click",() => {
+    let pedalesEncontrados = productos.filter(producto => producto.categoria === "Pedaleras");
+    contenedorTienda.innerHTML = "";
+    pedalesEncontrados.forEach(producto => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+        <img class = "card__imagen" src="${producto.imagen}" alt="">
+        <div class= "card__info">
+        <h3> ${producto.nombre}</h3>
+        <span> Precio: $ ${producto.precio}</span>
+        <p> Stock: ${producto.stock}</p>
+        <button id = ${producto.id} class = "btn" >Agregar</button>
+        </div>
+        `;
+        contenedorTienda.append(card);
+        const botonAgregar = document.getElementById(producto.id);
+        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
+    });
+});
+
+
 
 //QUITAR FILTROS
 botonQuitarFiltro.addEventListener("click", () => {
     contenedorTienda.innerHTML = "";
-    imprimirProductos()
+    renderizarProductos();
 });
 
 

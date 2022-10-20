@@ -1,6 +1,50 @@
 [
-    {"id": 1, "imagen": "../resources/g29.png", "nombre": "Logitech G29", "precio": 30000, "categoria": "Volantes", "stock": 4},
-    {"id": 2, "imagen": "../resources/t300.png","nombre": "Trusthmaster T300", "precio": 50000, "categoria": "Volantes", "stock": 5},
-    {"id": 3, "imagen": "../resources/fanatec.png", "nombre": "Fanatec Csl", "precio": 85000, "categoria": "Volantes", "stock": 2},
-    {"id": 4, "imagen": "../resources/heusinkveldSrc.png", "nombre": "Heusinkveld SPS", "precio": 30000, "categoria": "Pedaleras", "stock": 4}
+    {
+        "id": 1,
+        "imagen": "../resources/g29.png", 
+        "nombre": "Logitech G29", 
+        "precio": 30000, 
+        "categoria": "Volantes", 
+        "stock": 4
+    },
+    {
+        "id": 2, 
+        "imagen": "../resources/t300.png",
+        "nombre": "Trusthmaster T300", 
+        "precio": 50000, 
+        "categoria": "Volantes", 
+        "stock": 5
+    },
+    {
+        "id": 3,
+        "imagen": "../resources/fanatec.png", 
+        "nombre": "Fanatec Csl", 
+        "precio": 85000, 
+        "categoria": "Volantes", 
+        "stock": 2
+    },
+    {
+        "id": 4, 
+        "imagen": "../resources/heusinkveldSrc.png", 
+        "nombre": "Heusinkveld SPS", 
+        "precio": 30000, 
+        "categoria": "Pedaleras", 
+        "stock": 4
+    },
+    {
+        "id": 5, 
+        "imagen": "../resources/heusinkveldSrc.png", 
+        "nombre": "Heusinkveld SPS", 
+        "precio": 65000, 
+        "categoria": "Pedaleras", 
+        "stock": 8
+    },
+    {
+        "id": 6, 
+        "imagen": "../resources/heusinkveldSrc.png", 
+        "nombre": "Heusinkveld SPS", 
+        "precio": 42500, 
+        "categoria": "Pedaleras", 
+        "stock": 1
+    }
 ]
