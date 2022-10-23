@@ -1,50 +1,106 @@
 [
     {
         "id": 1,
-        "imagen": "../resources/g29.png", 
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_705969-MLA28039832339_082018-O.webp", 
         "nombre": "Logitech G29", 
         "precio": 30000, 
-        "categoria": "Volantes", 
+        "categoria": "volantes", 
         "stock": 4
     },
     {
         "id": 2, 
-        "imagen": "../resources/t300.png",
+        "imagen": "https://image.coolblue.be/max/500x500/products/1365751",
         "nombre": "Trusthmaster T300", 
         "precio": 50000, 
-        "categoria": "Volantes", 
+        "categoria": "volantes", 
         "stock": 5
     },
     {
         "id": 3,
-        "imagen": "../resources/fanatec.png", 
-        "nombre": "Fanatec Csl", 
+        "imagen": "https://manuals.plus/wp-content/uploads/2022/01/FANATEC-DD-PRO-Premium-Bundle-Drive-Wheel--300x271.jpg?ezimgfmt=rs:368x332/rscb1/ngcb1/notWebP", 
+        "nombre": "Fanatec Csl DD", 
         "precio": 85000, 
-        "categoria": "Volantes", 
+        "categoria": "volantes", 
         "stock": 2
     },
     {
         "id": 4, 
-        "imagen": "../resources/heusinkveldSrc.png", 
+        "imagen": "https://simtechpro.com/wp-content/uploads/2019/04/comprar-pedales-heusinkveld.jpg", 
         "nombre": "Heusinkveld SPS", 
         "precio": 30000, 
-        "categoria": "Pedaleras", 
+        "categoria": "pedaleras", 
         "stock": 4
     },
     {
         "id": 5, 
-        "imagen": "../resources/heusinkveldSrc.png", 
-        "nombre": "Heusinkveld SPS", 
+        "imagen": "https://cdn.shopify.com/s/files/1/0489/3864/7713/files/Pedales-Fanatec_ClubSport-v3-simracing-simraceronline.com_e98628ee-702c-4a61-8120-db43f7029105_480x480.jpg?v=1601565776", 
+        "nombre": "Fanatec ClubSport V3", 
         "precio": 65000, 
-        "categoria": "Pedaleras", 
+        "categoria": "pedaleras", 
         "stock": 8
     },
     {
         "id": 6, 
-        "imagen": "../resources/heusinkveldSrc.png", 
-        "nombre": "Heusinkveld SPS", 
+        "imagen": "https://dcsimracing.com/16-home_default/dc2.jpg", 
+        "nombre": "DC Simracing DC2", 
         "precio": 42500, 
-        "categoria": "Pedaleras", 
+        "categoria": "pedaleras", 
         "stock": 1
+    },
+    {
+        "id": 7, 
+        "imagen": "https://www.virtualracingcup.com/wp-content/uploads/2021/07/SIMAGIC-Alpha-Mini-GT-1-Bundle-1.jpg", 
+        "nombre": "SIMAGIC Alpha GT1", 
+        "precio": 83300, 
+        "categoria": "volantes", 
+        "stock": 3
+    },
+    {
+        "id": 8, 
+        "imagen": "https://cdn.shopify.com/s/files/1/0530/5712/6574/products/RedTri-pedals_7.jpg?v=1635569694", 
+        "nombre": "Simagic P2000", 
+        "precio": 75500, 
+        "categoria": "pedaleras", 
+        "stock": 0
+    },
+    {
+        "id": 9, 
+        "imagen": "https://simracingcockpit.com/wp-content/uploads/2021/10/240472279_4296680700427510_6352020986079637878_n1.png", 
+        "nombre": "Simmaster WRC", 
+        "precio": 23800, 
+        "categoria": "shifters", 
+        "stock": 1
+    },
+    {
+        "id": 10, 
+        "imagen": "https://cdn.shopify.com/s/files/1/0456/3238/9282/products/mmexport1623914322876_600x.jpg?v=1624253608", 
+        "nombre": "Simagic Q1", 
+        "precio": 18000, 
+        "categoria": "shifters", 
+        "stock": 4
+    },
+    {
+        "id": 11, 
+        "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg-905L4HgkqCA9B0Xvi6WrGjYn5gmMDHJcA&usqp=CAU", 
+        "nombre": "Sim Handbrake V2", 
+        "precio": 19700, 
+        "categoria": "handbrake", 
+        "stock": 3
+    },
+    {
+        "id": 12, 
+        "imagen": "https://cdn.shopify.com/s/files/1/0534/2206/3807/products/p1-pro-hydraulic-sim-racing-handbrake-coaches-931.jpg", 
+        "nombre": "P1 Pro", 
+        "precio": 17000, 
+        "categoria": "handbrake", 
+        "stock": 6
+    },
+    {
+        "id": 13, 
+        "imagen": "https://farm1.staticflickr.com/628/23127180033_0262646541_o.jpg", 
+        "nombre": "RicmoTech RALLYpro", 
+        "precio": 21200, 
+        "categoria": "handbrake", 
+        "stock": 0
     }
 ]

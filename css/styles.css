@@ -5,33 +5,15 @@
 }
 
 main{
-    background-color: rgb(221, 215, 215);
-}
-
-.nav{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    background-color: rgb(77, 224, 224);
-}
-
-.nav__lista{
-    display: inline;
-    list-style: none;
-}
-
-.nav__carrito{
-    display: flex;
-    align-self: center;
+    background-color: rgb(241, 240, 240);
 }
 
 .contenedor{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    border: none;
     gap: 35px;
+    padding: 2em;
     grid-template-areas: "product" "product" "product";
 }
 
@@ -40,20 +22,38 @@ main{
 }
 
 .card{
+    position: relative;
+    overflow: hidden;
     width: 310px;
     height: 480px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 3px solid rgb(139, 184, 251);
     border-radius: 15px;
-    background-color: rgb(224, 240, 243);
+    border: none;
+}
+
+.card:hover{
+    box-shadow: 1px 3px 10px 5px rgba(197, 197, 197, 0.75);
+    -webkit-box-shadow: 1px 3px 10px 5px rgba(197, 197, 197, 0.75);
+    -moz-box-shadow: 1px 3px 10px 5px rgba(197, 197, 197, 0.75);
+    transition: .5s;
 }
 
 .card__imagen{
-    width: 300px;
-    height: 300px;
+    position: absolute;
+    width: 100%;
+    height: 65%;
+    top: 0%;
+}
+
+.card__imagen--img{
+    margin: auto;
+    display: block;
+    object-fit:contain;
+    width: 90%;
+    height: 100%;
 }
 
 .card__imagen--carrito{
@@ -63,14 +63,25 @@ main{
 }
 
 .card__info{
+    position: absolute;
+    object-fit: fill;
+    top: 65%;
+    height: 35%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1vw;
+    border-top: 1px solid rgb(214, 214, 214);
 }
 
+.card__favorito{
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    color: greenyellow;
+}
 
-/* .card__carrito{
-} */
 
 .btn{
     background-image: linear-gradient(to bottom, rgb(128, 128, 245), rgb(76, 181, 216));
@@ -84,23 +95,31 @@ main{
     transition: 1s;
 }
 
-.btn__cantidad{
-    width: 40px;
-    height: 40px;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid gray;
-    border-radius: 5px;
-    margin: 10px;
-}
-
 .btn__sumres{
     display: block;
     border: none;
     color: rgb(0, 194, 58);
     background-color: white;
+}
+
+.btnAgregar{
+    background-color: rgb(252, 161, 44);
+    border-radius: .8rem;
+    height: 50px;
+    border: none;
+    color: white;
+    padding: 1vw 5vw;
+} 
+
+.btnAgregar:hover{
+    background-color: rgb(255, 117, 24);
+    transition: 1s;
+    padding: 1vw 8vw;
+} 
+
+
+.btnAgregar__off{
+    display: none;
 }
 
 .carrito{
@@ -112,7 +131,7 @@ main{
 .btn__carrito{
     position: absolute;
     border: none;
-    background-color: rgb(77, 224, 224);
+    background-color: rgb(13, 110, 253);
 }
 
 /* .carrito:hover{
@@ -157,15 +176,22 @@ main{
     background-color: white;
 }
 
-/* .btn__cantidad--input{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-} */
+
+.sin__stock{
+    color: red;
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+
+.stock__bajo{
+    color: rgb(247, 194, 18);
+    font-weight: bolder;
+}
+
+.stock__disponible{
+    color:green;
+    font-weight: bolder;
+}
 
 .footer{
     display: flex;
@@ -195,3 +221,12 @@ main{
     margin: 15px;
 }
 
+/* .btn__cantidad--input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+} */
