@@ -8,11 +8,33 @@ main{
     background-color: rgb(241, 240, 240);
 }
 
+
+/* HEADER */
+.header__brand{
+    width: 15em;
+    padding-left: 2em;
+}
+
+.header__categorias{
+    display: flex;
+    justify-content: center;
+    width: 40em;
+}
+
+.header__carrito{
+    display: flex;
+    width: 12em;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MAIN */
 .contenedor{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    gap: 35px;
+    justify-items: center;
+    row-gap: 2em;
     padding: 2em;
     grid-template-areas: "product" "product" "product";
 }
@@ -130,11 +152,7 @@ main{
     display: none;
 }
 
-.carrito{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .carrito__vacio{
     text-align: center;
@@ -144,29 +162,28 @@ main{
 
 .btn__carrito{
     position: absolute;
+    justify-content: center;
     border: none;
     background-color: rgb(13, 110, 253);
 }
 
-/* .carrito:hover{
-    transform: scale(1.1,1.1);
-    transition: 2s;
-}; */
+.btn__carrito--img{
+    width: 3em;
+}
 
 .btn__carrito--contador{
     display: block;
     position: relative;
-    bottom: 20px;
-    left: 20px;
+    bottom: 1em;
+    left: .4em;
     text-align: center;
     color: white;
-    width: 25px;
-    height: 25px;
-    background-color: red;
+    width: 1.2em;
+    background-color: rgb(255, 117, 24);
     border-radius: 15px;
 } 
 
-.btn__carrito--contadoroff{
+.btn__carrito--contadorOff{
     display: none;
 }
 
@@ -179,6 +196,12 @@ main{
     background-color: white;
     border: none;
 }
+
+
+
+
+
+
 
 .btn__cantidad--accion:hover{
     transform: scale(1.4, 1.4);
@@ -211,27 +234,56 @@ main{
     font-weight: 500;
 }
 
+/* FOOTER */
 .footer{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: rgb(77, 224, 224);
 }
 
+.footer__nav{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
 
 .footer__lista{
     list-style: none;
-    margin: 20px;
+}
+
+.footer__lista--categorias{
+    color: white;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.footer__lista--items{
+    text-decoration: none;
+    font-size: .8em;
+    color: white;
+}
+
+.footer__lista--items:hover{
+    color: rgb(204, 204, 204);
 }
 
 .footer__info{
     display: flex;
     flex-direction: column;
+    width: 30em;
+    height: auto;
+    background-color: rgb(195, 195, 195);
+    border-radius: .5em;
+}
+
+.footer__info--btn{
+    display: flex;
+    justify-content: center;
 }
 
 .footer__redes{
     display: flex;
-    align-items: top;
+    align-items: center;
     margin: 20px;
 }
 
@@ -239,13 +291,3 @@ main{
     width: 40px;
     margin: 15px;
 }
-
-/* .btn__cantidad--input{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-} */
