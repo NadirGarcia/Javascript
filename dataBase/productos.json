@@ -5,7 +5,8 @@
         "nombre": "Logitech G29", 
         "precio": 30000, 
         "categoria": "volantes", 
-        "stock": 4
+        "stock": 4,
+        "marca": "logitech"
     },
     {
         "id": 2, 
@@ -13,7 +14,8 @@
         "nombre": "Trusthmaster T300", 
         "precio": 50000, 
         "categoria": "volantes", 
-        "stock": 5
+        "stock": 5,
+        "marca": "trusthmaster"
     },
     {
         "id": 3,
@@ -21,7 +23,8 @@
         "nombre": "Fanatec Csl DD", 
         "precio": 85000, 
         "categoria": "volantes", 
-        "stock": 2
+        "stock": 2,
+        "marca": "fanatec"
     },
     {
         "id": 4, 
@@ -29,7 +32,8 @@
         "nombre": "Heusinkveld SPS", 
         "precio": 30000, 
         "categoria": "pedaleras", 
-        "stock": 4
+        "stock": 4,
+        "marca": "heusinkveld"
     },
     {
         "id": 5, 
@@ -37,7 +41,8 @@
         "nombre": "Fanatec ClubSport V3", 
         "precio": 65000, 
         "categoria": "pedaleras", 
-        "stock": 8
+        "stock": 8,
+        "marca": "fanatec"
     },
     {
         "id": 6, 
@@ -45,7 +50,8 @@
         "nombre": "DC Simracing DC2", 
         "precio": 42500, 
         "categoria": "pedaleras", 
-        "stock": 1
+        "stock": 1,
+        "marca": "dc"
     },
     {
         "id": 7, 
@@ -53,7 +59,8 @@
         "nombre": "SIMAGIC Alpha GT1", 
         "precio": 83300, 
         "categoria": "volantes", 
-        "stock": 3
+        "stock": 3,
+        "marca": "simagic"
     },
     {
         "id": 8, 
@@ -61,7 +68,8 @@
         "nombre": "Simagic P2000", 
         "precio": 75500, 
         "categoria": "pedaleras", 
-        "stock": 0
+        "stock": 0,
+        "marca": "simagic"
     },
     {
         "id": 9, 
@@ -69,7 +77,8 @@
         "nombre": "Simmaster WRC", 
         "precio": 23800, 
         "categoria": "shifters", 
-        "stock": 1
+        "stock": 1,
+        "marca": "simmaster"
     },
     {
         "id": 10, 
@@ -77,7 +86,8 @@
         "nombre": "Simagic Q1", 
         "precio": 18000, 
         "categoria": "shifters", 
-        "stock": 4
+        "stock": 4,
+        "marca": "simagic"
     },
     {
         "id": 11, 
@@ -85,7 +95,8 @@
         "nombre": "Sim Handbrake V2", 
         "precio": 19700, 
         "categoria": "handbrake", 
-        "stock": 3
+        "stock": 3,
+        "marca": "heusinkveld"
     },
     {
         "id": 12, 
@@ -93,7 +104,8 @@
         "nombre": "P1 Pro", 
         "precio": 17000, 
         "categoria": "handbrake", 
-        "stock": 6
+        "stock": 6,
+        "marca": "simcoaches"
     },
     {
         "id": 13, 
@@ -101,6 +113,7 @@
         "nombre": "RicmoTech RALLYpro", 
         "precio": 21200, 
         "categoria": "handbrake", 
-        "stock": 0
+        "stock": 0,
+        "marca": "ricmotech"
     }
 ]

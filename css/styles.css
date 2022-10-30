@@ -17,6 +17,14 @@ main{
     grid-template-areas: "product" "product" "product";
 }
 
+.contenedor__mensaje{
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    color: rgb(255, 145, 0);
+    padding: 2em;
+}
+
 .product{
     grid-area: product;
 }
@@ -128,6 +136,12 @@ main{
     align-items: center;
 }
 
+.carrito__vacio{
+    text-align: center;
+    font-size: 2em;
+    color: orange;
+}
+
 .btn__carrito{
     position: absolute;
     border: none;
@@ -193,12 +207,17 @@ main{
     font-weight: bolder;
 }
 
+.navbar-dark{
+    font-weight: 500;
+}
+
 .footer{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     background-color: rgb(77, 224, 224);
 }
+
 
 .footer__lista{
     list-style: none;

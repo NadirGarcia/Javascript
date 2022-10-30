@@ -10,7 +10,7 @@ const handbrake = document.getElementById("frenoDeMano");
 const vaciarCarrito = document.getElementById("vaciarCarrito");
 const contenedorCarrito = document.getElementById("contenedorCarrito");
 const contenedorTienda = document.getElementById("contenedorTienda");
-
+const btnCarrito = document.getElementById("btnCarrito");
 
 const imprimirProductos = async () => {
     try {
@@ -25,8 +25,8 @@ let productos = await imprimirProductos();
 
 
 //RENDERIZACION DE PRODUCTOS
-let renderizarProductos = () => {
-    productos.forEach((producto) => {
+let renderizarProductos = (array) => {
+    array.forEach((producto) => {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
@@ -41,6 +41,7 @@ let renderizarProductos = () => {
             </div>
         `;
         contenedorTienda.append(card);
+        contenedorTienda.className = "contenedor";
         const botonAgregar = document.getElementById(producto.id);
         botonAgregar.addEventListener("click", () => agregarCarrito(producto));
         let stock = document.getElementById(`stock${producto.id}`);
@@ -57,28 +58,9 @@ let renderizarProductos = () => {
         }      
     });
 };
+renderizarProductos(productos)
 
-renderizarProductos()
-
-
-
-
-
-
-/* //CONSTRUCTOR PRODUCTOS
-class Item {
-    constructora(producto) {
-        this.id = producto.id;
-        this.imagen = producto.imagen;
-        this.nombre = producto.nombre;
-        this.precio = producto.precio;
-        this.categoria = producto.categoria;
-        this.stock = producto.stock;
-    }
-}; */
-
-
-//CARRITO
+//AGREGAR PRODUCTOS AL CARRITO
 const agregarCarrito = (producto) => {
     let productoEnCarrito = carrito.find(existe => existe.id === producto.id);
     if (productoEnCarrito === undefined) {
@@ -94,8 +76,6 @@ const agregarCarrito = (producto) => {
     imprimirCarrito();
     localStorage.setItem("enCarrito", JSON.stringify(carrito));
 };
-
-
 
 //RENDERIZACION DE PRODUCTO EN CARRITO
 const imprimirCarrito = () => {
@@ -125,6 +105,8 @@ const imprimirCarrito = () => {
     });
 };
 
+
+//BOTON SUMAR CARRITO
 const sumarCantidadCarrito = (item) => {
     let productoOriginal = productos.find(existe => existe.id === item.id)
     let productoModificar = carrito.find(existe => existe.id === item.id)
@@ -134,6 +116,7 @@ const sumarCantidadCarrito = (item) => {
     localStorage.setItem("enCarrito", JSON.stringify(carrito));
 };
 
+//BOTON RESTAR CARRITO
 const restarCantidadCarrito = (item) => {
     let productoOriginal = productos.find(existe => existe.id === item.id);
     let productoModificar = carrito.find(existe => existe.id === item.id);
@@ -141,12 +124,12 @@ const restarCantidadCarrito = (item) => {
     productoModificar.precio = productoModificar.precio - productoOriginal.precio
     productoModificar.cantidad = productoModificar.cantidad - 1
     productoModificar.cantidad < 1 ? carrito.splice(indice, 1) : false;
-    imprimirCarrito()
-    totalCompra();
+    imprimirCarrito();
     contadorCarrito();
+    totalCompra();
+    botonCarrito();
     localStorage.setItem("enCarrito", JSON.stringify(carrito));
 }
-
 
 //CONTADOR PRODUCTOS EN CARRITO
 const contadorCarrito = () => {
@@ -186,6 +169,7 @@ const eliminarItem = (item) => {
         }
     }).showToast();
     contadorCarrito();
+    botonCarrito();
     //Eliminar Item de carrito en LocalStorage
     let carritoLS = JSON.parse(localStorage.getItem("enCarrito"));
     carritoLS = carrito.filter(existe => existe.id !== item.id);
@@ -208,6 +192,7 @@ vaciarCarrito.addEventListener("click", () => {
             imprimirCarrito();
             totalCompra();
             contadorCarrito();
+            botonCarrito();
             localStorage.clear();
             Swal.fire(
                 'Tu carrito fue vaciado',
@@ -216,163 +201,102 @@ vaciarCarrito.addEventListener("click", () => {
     });
 });
 
+//BOTON CARRITO
+
+const botonCarrito = () => {
+    if(carrito.length !== 0){
+        imprimirCarrito();
+    }else{
+        contenedorCarrito.innerHTML = "Su carrito esta vacio!";
+    }
+};
+
+btnCarrito.addEventListener("click", botonCarrito)
+
 //RENDERIZACION DE CARRITO DESDE LOCALSTORAGE
 let renderizarLS = carritoLS ? true : false;
 renderizarLS ? carrito = carritoLS : false;
 imprimirCarrito();
 
+
 //CATEGORIA VOLANTES
 volantes.addEventListener("click", () => {
-    let volantesEncontrados = productos.filter(producto => producto.categoria === "Volantes");
+    let volantesEncontrados = productos.filter(producto => producto.categoria === "volantes");
     contenedorTienda.innerHTML = "";
-    volantesEncontrados.forEach(producto => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-        <div class = "card__imagen">    
-            <img class = "card__imagen--img" src="${producto.imagen}" alt="imagen">
-        </div>   
-        <div class= "card__info">
-            <h3> ${producto.nombre}</h3>
-            <span> Precio: $ ${producto.precio}</span>
-            <span id = "stock${producto.id}">${producto.stock}</span>
-            <button id = ${producto.id} class = "btnAgregar" >Agregar</button>
-        </div>
-        `;
-        contenedorTienda.append(card);
-        const botonAgregar = document.getElementById(producto.id);
-        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-        let stock = document.getElementById(`stock${producto.id}`);
-        if(producto.stock < 1){
-            stock.innerHTML = "SIN STOCK";
-            stock.className = "sin__stock";
-            botonAgregar.className = "btnAgregar__off"
-        }else if(producto.stock < 3){
-            stock.innerHTML = "STOCK BAJO";
-            stock.className = "stock__bajo";
-        }else{
-            stock.innerHTML = "DISPONIBLE";
-            stock.className = "stock__disponible";
-        }      
-    });
-});
+    renderizarProductos(volantesEncontrados);
+}); 
+
+const volantesFooter = document.getElementById("volantesFooter");
+volantesFooter.addEventListener("click", () => {
+    let volantesEncontrados = productos.filter(producto => producto.categoria === "volantes");
+    contenedorTienda.innerHTML = "";
+    renderizarProductos(volantesEncontrados);
+}); 
 
 //CATEGORIA PEDALERAS
 pedaleras.addEventListener("click",() => {
-    let pedalesEncontrados = productos.filter(producto => producto.categoria === "Pedaleras");
+    let pedalesEncontrados = productos.filter(producto => producto.categoria === "pedaleras");
     contenedorTienda.innerHTML = "";
-    pedalesEncontrados.forEach(producto => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-        <div class = "card__imagen">    
-            <img class = "card__imagen--img" src="${producto.imagen}" alt="imagen">
-        </div>   
-        <div class= "card__info">
-            <h3> ${producto.nombre}</h3>
-            <span> Precio: $ ${producto.precio}</span>
-            <span id = "stock${producto.id}">${producto.stock}</span>
-            <button id = ${producto.id} class = "btnAgregar" >Agregar</button>
-        </div>
-        `;
-        contenedorTienda.append(card);
-        const botonAgregar = document.getElementById(producto.id);
-        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-        let stock = document.getElementById(`stock${producto.id}`);
-        if(producto.stock < 1){
-            stock.innerHTML = "SIN STOCK";
-            stock.className = "sin__stock";
-            botonAgregar.className = "btnAgregar__off"
-        }else if(producto.stock < 3){
-            stock.innerHTML = "STOCK BAJO";
-            stock.className = "stock__bajo";
-        }else{
-            stock.innerHTML = "DISPONIBLE";
-            stock.className = "stock__disponible";
-        }      
-    });
+    renderizarProductos(pedalesEncontrados);
+});
+
+const pedalerasFooter = document.getElementById("pedalerasFooter");
+pedalerasFooter.addEventListener("click",() => {
+    let pedalesEncontrados = productos.filter(producto => producto.categoria === "pedaleras");
+    contenedorTienda.innerHTML = "";
+    renderizarProductos(pedalesEncontrados);
 });
 
 //CATEGORIA HANBRAKE
 handbrake.addEventListener("click",() => {
-    let pedalesEncontrados = productos.filter(producto => producto.categoria === "Handbrake");
+    let handbrakeEncontrados = productos.filter(producto => producto.categoria === "handbrake");
     contenedorTienda.innerHTML = "";
-    pedalesEncontrados.forEach(producto => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-        <div class = "card__imagen">    
-            <img class = "card__imagen--img" src="${producto.imagen}" alt="imagen">
-        </div>   
-        <div class= "card__info">
-            <h3> ${producto.nombre}</h3>
-            <span> Precio: $ ${producto.precio}</span>
-            <span id = "stock${producto.id}">${producto.stock}</span>
-            <button id = ${producto.id} class = "btnAgregar" >Agregar</button>
-        </div>
-        `;
-        contenedorTienda.append(card);
-        const botonAgregar = document.getElementById(producto.id);
-        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-        let stock = document.getElementById(`stock${producto.id}`);
-        if(producto.stock < 1){
-            stock.innerHTML = "SIN STOCK";
-            stock.className = "sin__stock";
-            botonAgregar.className = "btnAgregar__off"
-        }else if(producto.stock < 3){
-            stock.innerHTML = "STOCK BAJO";
-            stock.className = "stock__bajo";
-        }else{
-            stock.innerHTML = "DISPONIBLE";
-            stock.className = "stock__disponible";
-        }      
-    });
+    renderizarProductos(handbrakeEncontrados);
 });
+
+const handbrakeFooter = document.getElementById("frenoDeManoFooter");
+handbrakeFooter.addEventListener("click",() => {
+    let handbrakeEncontrados = productos.filter(producto => producto.categoria === "handbrake");
+    contenedorTienda.innerHTML = "";
+    renderizarProductos(handbrakeEncontrados);
+});
+
 
 //CATEGORIA SHIFTERS
 shifters.addEventListener("click",() => {
-    let pedalesEncontrados = productos.filter(producto => producto.categoria === "Shifters");
+    let shiftersEncontrados = productos.filter(producto => producto.categoria === "shifters");
     contenedorTienda.innerHTML = "";
-    pedalesEncontrados.forEach(producto => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-        <div class = "card__imagen">    
-            <img class = "card__imagen--img" src="${producto.imagen}" alt="imagen">
-        </div>   
-        <div class= "card__info">
-            <h3> ${producto.nombre}</h3>
-            <span> Precio: $ ${producto.precio}</span>
-            <span id = "stock${producto.id}">${producto.stock}</span>
-            <button id = ${producto.id} class = "btnAgregar" >Agregar</button>
-        </div>
-        `;
-        contenedorTienda.append(card);
-        const botonAgregar = document.getElementById(producto.id);
-        botonAgregar.addEventListener("click", () => agregarCarrito(producto));
-        let stock = document.getElementById(`stock${producto.id}`);
-        if(producto.stock < 1){
-            stock.innerHTML = "SIN STOCK";
-            stock.className = "sin__stock";
-            botonAgregar.className = "btnAgregar__off"
-        }else if(producto.stock < 3){
-            stock.innerHTML = "STOCK BAJO";
-            stock.className = "stock__bajo";
-        }else{
-            stock.innerHTML = "DISPONIBLE";
-            stock.className = "stock__disponible";
-        }      
-    });
+    renderizarProductos(shiftersEncontrados);
+});
+
+const shiftersFooter = document.getElementById("shiftersFooter");
+shiftersFooter.addEventListener("click",() => {
+    let shiftersEncontrados = productos.filter(producto => producto.categoria === "shifters");
+    contenedorTienda.innerHTML = "";
+    renderizarProductos(shiftersEncontrados);
 });
 
 
-//BUSCADOR  
-botonBuscar.addEventListener("click", () => {
-    let buscado = inputBuscar.value.toLowerCase()
-    let encontrado = productos.filter(item => item.categoria.includes(buscado))
+//BUSCADOR INPUT
+let buscador = () => {
+    let buscado = inputBuscar.value.toLowerCase();
     inputBuscar.value = "";
-    encontrado.length === 0 ? console.log("Producto no encontrado"): console.log(encontrado);
-});
+    if((buscado !== "") && (buscado.length > 1)){
+        contenedorTienda.innerHTML = "";
+        let encontrado = productos.filter(item => (item.categoria.includes(buscado)) || (item.marca.includes(buscado)));
+        encontrado.length === 0 ? (
+            (contenedorTienda.innerHTML = "Producto no encontrado")
+            (contenedorTienda.className = "contenedor__mensaje")
+            ): 
+            renderizarProductos(encontrado);
+    }else{
+        contenedorTienda.innerHTML = "Ingrese el producto que desea buscar!!";
+        contenedorTienda.className = "contenedor__mensaje";
+    };
+};
+
+inputBuscar.addEventListener("change", buscador);
+
 
 
 /* //QUITAR FILTROS
