@@ -7,10 +7,13 @@ const volantes = document.getElementById("volantes");
 const pedaleras = document.getElementById("pedaleras");
 const shifters = document.getElementById("shifters");
 const handbrake = document.getElementById("frenoDeMano");
+const finalizarCompra = document.getElementById("finalizarCompra");
 const vaciarCarrito = document.getElementById("vaciarCarrito");
 const contenedorCarrito = document.getElementById("contenedorCarrito");
 const contenedorTienda = document.getElementById("contenedorTienda");
 const btnCarrito = document.getElementById("btnCarrito");
+const usuario = document.getElementById("inputUsuario");
+const pass = document.getElementById("inputPass");
 
 const imprimirProductos = async () => {
     try {
@@ -82,14 +85,17 @@ const imprimirCarrito = () => {
     contenedorCarrito.innerHTML = "";
     carrito.forEach(item => {
         const itemCarrito = document.createElement("tr");
-        itemCarrito.className = "card__carrito";
+        itemCarrito.className = "carrito"
         itemCarrito.innerHTML = `
-            <td><img class = "card__imagen--carrito" src="${item.imagen}" alt=""></td>
+            <td><img class = "carrito__imagen" src="${item.imagen}" alt=""></td>
             <td><h5>${item.nombre}</h5></td>
             <td><span> $ ${item.precioUnitario}</span></td>
-            <td><span class = "cantidad"> ${item.cantidad}</span> </td>
-            <button id ="sumar${item.id}" class = "btn__sumres">+</button>
-            <button id ="restar${item.id}" class = "btn__sumres">-</button>
+            <td><span class = "carrito__cantidad--num"> ${item.cantidad}</span></td>
+            <td>
+                <button id ="sumar${item.id}" class = "btn__sumres">▲</button>
+                <button id ="restar${item.id}" class = "btn__sumres">▼</button>
+            </td>
+            </td>
             <td><span> $ ${item.precio}</span></td>
             <td><button id = "eliminar${item.id}" class = "btn__eliminar"> <img src ="../resources/trash.png"></button></td>
             `;
@@ -207,11 +213,20 @@ const botonCarrito = () => {
     if(carrito.length !== 0){
         imprimirCarrito();
     }else{
-        contenedorCarrito.innerHTML = "Su carrito esta vacio!";
+        contenedorCarrito.innerHTML = `
+        <h2>Su carrito esta vacio!</h2>
+        `;
+        contenedorCarrito.className = "carrito__vacio";
     }
 };
 
 btnCarrito.addEventListener("click", botonCarrito)
+
+
+
+/* const compra = () => {
+
+}; */
 
 //RENDERIZACION DE CARRITO DESDE LOCALSTORAGE
 let renderizarLS = carritoLS ? true : false;

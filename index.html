@@ -71,7 +71,7 @@
             <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Mi Carrito</h5>
+                        <h5 class="modal__header--titulo" id="exampleModalLabel">Mi Carrito</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -82,6 +82,7 @@
                                     <th scope="col">Producto</th>
                                     <th scope="col">Precio</th>
                                     <th scope="col">Cantidad</th>
+                                    <th scope="col"></th>
                                     <th scope="col">Subtotal</th>
                                 </tr>
                             </thead>
@@ -89,10 +90,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="modal-footer">
-                        <span id="total"></span>
-                        <div>
-                            <button class="btn btn-primary">Comprar</button>
+                    <div class="modal__footer">
+                        <span id="total" class="modal__footer--total"></span>
+                        <div class="modal__botones">
+                            <button id="finalizarCompra" class="btn btn-primary">Finalizar Compra</button>
                             <button id="vaciarCarrito" class="btn btn-primary">Vaciar Carrito</button>
                         </div>
                     </div>
@@ -112,14 +113,14 @@
         </div>
         <div class="footer__info m-2">
             <div class="form-floating m-2">
-                <input type="email" class="form-control" id="floatingInput2" placeholder="name@example.com">
+                <input type="email" class="form-control" id="inputUsuario" placeholder="name@example.com">
                 <label for="floatingInput">Email</label>
             </div>
             <div class="form-floating m-2">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" class="form-control"  id="inputPass" placeholder="Password">
                 <label for="floatingPassword">Contraseña</label>
             </div>
-            <button class="btn footer__info--btn m-2" type="submit">Registrarse</button>
+            <button class="btn footer__info--btn m-4" type="submit">Registrarse</button>
         </div>
         <div class="footer__redes">
             <a href="https://facebook.com" target="_blank"><img class="footer__redes--img"

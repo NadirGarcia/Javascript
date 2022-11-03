@@ -86,12 +86,6 @@ main{
     height: 100%;
 }
 
-.card__imagen--carrito{
-    width: 7vw;
-    height: auto;
-    margin: 10px;
-}
-
 .card__info{
     position: absolute;
     object-fit: fill;
@@ -105,17 +99,9 @@ main{
     border-top: 1px solid rgb(214, 214, 214);
 }
 
-.card__favorito{
-    position: absolute;
-    top: 2%;
-    right: 5%;
-    color: greenyellow;
-}
-
-
 .btn{
-    background-image: linear-gradient(to bottom, rgb(128, 128, 245), rgb(76, 181, 216));
-    border-radius: 1.5rem;
+    background-color: lightseagreen;
+    border-radius: .8rem;
     border: none;
     color: white;
 }
@@ -123,12 +109,13 @@ main{
 .btn:hover{
     transform: scale(1.05, 1.05);
     transition: 1s;
+    background-color:rgb(8, 115, 110);
 }
 
 .btn__sumres{
     display: block;
+    color: rgb(83, 162, 123);
     border: none;
-    color: rgb(0, 194, 58);
     background-color: white;
 }
 
@@ -147,17 +134,39 @@ main{
     padding: 1vw 8vw;
 } 
 
-
 .btnAgregar__off{
     display: none;
 }
 
+/* MODAL CARRITO */
+.carrito{
+    vertical-align: middle;
+}
 
+.carrito__imagen{
+    width: 9vw;
+    height: auto;
+    margin: .5em;
+}
 
-.carrito__vacio{
-    text-align: center;
+.modal__header--titulo{
     font-size: 2em;
-    color: orange;
+    font-weight: 500;
+}
+
+.modal__botones{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 2em;
+}
+
+.modal__footer--total{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5em;
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
 .btn__carrito{
@@ -175,16 +184,21 @@ main{
     display: block;
     position: relative;
     bottom: 1em;
-    left: .4em;
+    left: 1.2em;
     text-align: center;
     color: white;
     width: 1.2em;
     background-color: rgb(255, 117, 24);
-    border-radius: 15px;
+    border-radius: .6em;
 } 
 
 .btn__carrito--contadorOff{
     display: none;
+}
+
+.carrito__vacio{
+    font-size: 2em;
+    color: orange;
 }
 
 .btn__cantidad--accion{
@@ -197,12 +211,6 @@ main{
     border: none;
 }
 
-
-
-
-
-
-
 .btn__cantidad--accion:hover{
     transform: scale(1.4, 1.4);
     background-color: rgb(240, 238, 238);
@@ -213,7 +221,17 @@ main{
     background-color: white;
 }
 
+.carrito__cantidad{
+    display: inline-block;
+}  
 
+.carrito__cantidad--num{
+    display: flex;
+    justify-content: center;
+} 
+
+
+/* RENDERIZACION STOCK */
 .sin__stock{
     color: red;
     font-weight: bolder;
@@ -228,10 +246,6 @@ main{
 .stock__disponible{
     color:green;
     font-weight: bolder;
-}
-
-.navbar-dark{
-    font-weight: 500;
 }
 
 /* FOOTER */
