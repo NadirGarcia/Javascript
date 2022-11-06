@@ -305,3 +305,19 @@ main{
     width: 40px;
     margin: 15px;
 }
+
+.carrito__compra{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid rgb(196, 195, 195);
+    margin: 2em;
+}
+
+.contenedor__compra--titulo{
+    background-color: grey;
+    text-align: center;
+    font-size: 2em;
+    color: whitesmoke;
+    padding: .3em;
+}

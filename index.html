@@ -64,7 +64,7 @@
         </nav>
     </header>
     <main>
-        <div id="contenedorTienda" class="contenedor contenedor__mensaje"></div>
+        <div id="contenedorTienda" class="contenedor contenedor__mensaje contenedor__compra"></div>
         <!-- MODAL -->
         <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -113,14 +113,15 @@
         </div>
         <div class="footer__info m-2">
             <div class="form-floating m-2">
-                <input type="email" class="form-control" id="inputUsuario" placeholder="name@example.com">
+                <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
                 <label for="floatingInput">Email</label>
             </div>
             <div class="form-floating m-2">
                 <input type="password" class="form-control"  id="inputPass" placeholder="Password">
                 <label for="floatingPassword">Contraseña</label>
             </div>
-            <button class="btn footer__info--btn m-4" type="submit">Registrarse</button>
+            <button id="btnLogin" class="btn footer__info--btn m-4" type="submit">Login</button>
+            <button id="btnRegistro" class="btn footer__info--btn m-4" type="submit">Registrarse</button>
         </div>
         <div class="footer__redes">
             <a href="https://facebook.com" target="_blank"><img class="footer__redes--img"

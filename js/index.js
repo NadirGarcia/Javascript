@@ -14,7 +14,10 @@ const contenedorTienda = document.getElementById("contenedorTienda");
 const btnCarrito = document.getElementById("btnCarrito");
 const usuario = document.getElementById("inputUsuario");
 const pass = document.getElementById("inputPass");
+const btnLogin = document.getElementById("btnLogin");
+const btnRegistro = document.getElementById("btnRegistro");
 
+//TRAER ARRAY DE productos.json
 const imprimirProductos = async () => {
     try {
         let response = await fetch("./dataBase/productos.json");
@@ -94,7 +97,6 @@ const imprimirCarrito = () => {
             <td>
                 <button id ="sumar${item.id}" class = "btn__sumres">▲</button>
                 <button id ="restar${item.id}" class = "btn__sumres">▼</button>
-            </td>
             </td>
             <td><span> $ ${item.precio}</span></td>
             <td><button id = "eliminar${item.id}" class = "btn__eliminar"> <img src ="../resources/trash.png"></button></td>
@@ -221,6 +223,24 @@ const botonCarrito = () => {
 };
 
 btnCarrito.addEventListener("click", botonCarrito)
+
+
+finalizarCompra.addEventListener("click", () => {
+    contenedorTienda.innerHTML = "";
+    contenedorTienda.className = "contenedor__compra";
+    contenedorTienda.innerHTML = `<p class="contenedor__compra--titulo">Carrito de compras</p>`;
+    carrito.forEach(item => {
+        const itemCarrito = document.createElement("tr");
+        itemCarrito.className = "carrito__compra"
+        itemCarrito.innerHTML = `
+            <img class = "carrito__imagen" src="${item.imagen}" alt="">
+            <h5>${item.nombre}</h5>
+            <span class = "carrito__cantidad--num"> ${item.cantidad}x $ ${item.precio}</span>
+            `;
+        contenedorTienda.append(itemCarrito);
+    });
+})
+
 
 
 
