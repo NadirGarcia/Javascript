@@ -43,9 +43,6 @@
                                     <li><a id="frenoDeMano" class="dropdown-item" href="#">Handbrakes</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Ofertas</a>
-                            </li>
                         </ul>
                     </div>
                     <div class="input-group rounded">
@@ -55,6 +52,7 @@
                         </span>
                     </div>
                 </div>
+                <div id = "contenedorLogin" class="div__login"></div>
                 <div class="header__carrito"> 
                     <button id="btnCarrito" type="button" class="btn__carrito btn-primary" data-bs-toggle="modal"
                         data-bs-target="#exampleModal"><img class="btn__carrito--img" src="../resources/carrito.png" alt="Carrito"></button>
@@ -66,8 +64,7 @@
     <main>
         <div id="contenedorTienda" class="contenedor contenedor__mensaje contenedor__compra"></div>
         <!-- MODAL -->
-        <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -86,14 +83,13 @@
                                     <th scope="col">Subtotal</th>
                                 </tr>
                             </thead>
-                            <tbody id="contenedorCarrito">
-                            </tbody>
+                            <tbody id="contenedorCarrito"></tbody>
                         </table>
                     </div>
                     <div class="modal__footer">
                         <span id="total" class="modal__footer--total"></span>
                         <div class="modal__botones">
-                            <button id="finalizarCompra" class="btn btn-primary">Finalizar Compra</button>
+                            <button id="btnComprar" class="btn btn-primary" data-bs-dismiss="modal">Continuar Compra</button>
                             <button id="vaciarCarrito" class="btn btn-primary">Vaciar Carrito</button>
                         </div>
                     </div>

@@ -40,11 +40,28 @@ main{
 }
 
 .contenedor__mensaje{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: 3em;
     font-weight: bold;
     color: rgb(255, 145, 0);
     padding: 2em;
+}
+
+.contenedor__mensaje--btn{
+    width: 15em;
+    font-size: .5em;
+    color: whitesmoke;
+    background-color: lightseagreen;
+    border-radius: .5em;
+    border: none;
+}
+
+.contenedor__mensaje--btn:hover{
+    transform: scale(1.05, 1.05);
+    transition: 1s;
+    background-color:rgb(8, 115, 110);
 }
 
 .product{
@@ -139,6 +156,7 @@ main{
 }
 
 /* MODAL CARRITO */
+
 .carrito{
     vertical-align: middle;
 }
@@ -320,4 +338,49 @@ main{
     font-size: 2em;
     color: whitesmoke;
     padding: .3em;
+}
+
+.compra__footer{
+    position: relative;
+    bottom: 1em;
+    left: 65em;
+    width: 20vw;
+    height: auto;
+    border: 1px solid gray;
+    border-radius: 1em;
+    text-align: center;
+}
+
+.compra__footer--total{
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.compra__footer--btn{
+    margin: 1em;
+}
+
+/* Renderizacion Boton Finalizar la Compra */
+.finalizacion__compra{
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+/* Login header */
+.div__login{
+    display: flex;
+    flex-direction: column;
+    color: whitesmoke;
+}
+
+.div__login--btn{
+    position: relative;
+    left: 5em;
+    width: 8em;
+    font-size: .7em;
+    font-weight: 500;
+    background-color: rgb(228, 228, 228);
+    border: none;
+    border-radius: .5em;
 }
