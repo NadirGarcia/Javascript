@@ -265,13 +265,14 @@ btnComprar.addEventListener("click", () => {
         <button id="continuarComprando" class="contenedor__mensaje--btn">Continuar Comprando</button>
         `;
         contenedorTienda.className = "contenedor__mensaje";
+        const continuarComprando = document.getElementById("continuarComprando")
+        continuarComprando.addEventListener("click", () => {window.location = "http://127.0.0.1:5500/index.html"});
     }else{
         contenedorTienda.innerHTML = "Debe estar logueado para finalizar la compra";
         contenedorTienda.className = "contenedor__mensaje";
     };
-    const continuarComprando = document.getElementById("continuarComprando")
-    continuarComprando.addEventListener("click", () => {window.location = "http://127.0.0.1:5500/index.html"});
 });
+
 
 //FINALIZAR LA COMPRA
 const terminarCompra = () => {
@@ -405,7 +406,7 @@ const login = () => {
         contenedorLogin.append(cerrarSession);
         cerrarSession.addEventListener("click", sessionClear);
         sessionStorage.setItem("usuarioEnLinea",JSON.stringify(usuarioEncontrado));
-        scroll(0,0);
+        window.location = "http://127.0.0.1:5500/index.html";
     };
 }; 
 btnLogin.addEventListener("click", login);
